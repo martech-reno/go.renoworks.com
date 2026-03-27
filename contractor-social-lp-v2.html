@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Renoworks Pro — Close More Jobs</title>
+  <meta name="description" content="Show clients exactly what their home will look like. Renoworks Pro helps contractors win more jobs through real-time visualization.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── Tokens ─────────────────────────────── */
+    :root {
+      --brand:    #FF8000;
+      --amber:    #FFAF37;
+      --ink:      #1A1B1E;
+      --deep:     #0F1012;
+      --body:     #454F5F;
+      --muted:    #8C9BAA;
+      --rule:     #E4E4E4;
+      --bg-soft:  #F5F5F3;
+      --white:    #FFFFFF;
+      --fh: 'Plus Jakarta Sans', sans-serif;
+      --fb: 'Barlow', sans-serif;
+    }
+
+    /* ── Reset ──────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: clip; }
+    body { font-family: var(--fb); color: var(--body); background: var(--white); -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+    h1,h2,h3,h4 { font-family: var(--fh); line-height: 1.05; }
+    img, svg { display: block; }
+
+    /* ── Scroll reveal ──────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+
+    /* ── Buttons ────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 26px; border-radius: 100px;
+      font-family: var(--fh); font-weight: 700; font-size: 15px;
+      cursor: pointer; border: none; white-space: nowrap;
+      transition: opacity .18s, transform .15s;
+    }
+    .btn:hover { opacity: .86; transform: translateY(-1px); }
+    .btn-orange { background: var(--brand); color: var(--white); }
+    .btn-outline-white { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,.32); }
+    .btn-outline-dark  { background: transparent; color: var(--ink);   border: 1.5px solid rgba(26,27,30,.25); }
+    .btn-lg  { padding: 16px 34px; font-size: 16px; }
+    .btn-sm  { padding: 10px 20px; font-size: 14px; }
+    .btn-full { width: 100%; justify-content: center; }
+
+    /* ── Eyebrow ────────────────────────────── */
+    .eyebrow {
+      display: inline-block;
+      font-family: var(--fh); font-size: 11px; font-weight: 700;
+      letter-spacing: 1.6px; text-transform: uppercase; color: var(--brand);
+      margin-bottom: 20px;
+    }
+
+    /* ═══════════════════════════════════════════
+       STICKY HEADER
+    ════════════════════════════════════════════ */
+    .site-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      padding: 18px 56px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(15,16,18,.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transform: translateY(-100%);
+      transition: transform .3s ease;
+    }
+    .site-header.up { transform: translateY(0); }
+    .hdr-logo { font-family: var(--fh); font-weight: 700; font-size: 18px; color: var(--white); letter-spacing: -.3px; }
+    .hdr-logo em { font-style: normal; color: var(--brand); }
+
+    /* ═══════════════════════════════════════════
+       HERO
+    ════════════════════════════════════════════ */
+    .hero {
+      background: var(--white);
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 140px 56px 100px;
+      position: relative; overflow: hidden;
+    }
+    /* Subtle grid pattern */
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(71,71,71,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(71,71,71,.04) 1px, transparent 1px);
+      background-size: 64px 64px;
+      pointer-events: none;
+    }
+    .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; position: relative; }
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid rgba(255,128,0,.2);
+      border-radius: 100px; padding: 5px 14px;
+      font-family: var(--fh); font-size: 12px; font-weight: 600;
+      color: rgba(255,128,0,.85); margin-bottom: 36px;
+    }
+    .hero-tag-dot { width: 6px; height: 6px; background: var(--brand); border-radius: 50%; }
+
+    .hero-h1 {
+      font-size: clamp(52px, 7.5vw, 98px);
+      font-weight: 700;
+      color: #474747;
+      letter-spacing: -0.035em;
+      line-height: 0.96;
+      margin-bottom: 36px;
+      max-width: 14ch;
+    }
+    /* Orange underline accent on one word */
+    .hero-h1 .ul {
+      position: relative; display: inline;
+    }
+    .hero-h1 .ul::after {
+      content: '';
+      position: absolute; left: 0; bottom: -6px; right: 0;
+      height: 4px; background: var(--brand); border-radius: 2px;
+    }
+
+    .hero-sub {
+      font-size: clamp(16px, 1.8vw, 19px);
+      line-height: 1.65;
+      color: var(--body);
+      max-width: 500px;
+      margin-bottom: 44px;
+    }
+    .hero-ctas { display: flex; gap: 12px; align-items: center; margin-bottom: 72px; }
+
+    /* Bottom bar: three stats */
+    .hero-stats {
+      display: flex; gap: 0;
+      border-top: 1px solid rgba(71,71,71,.12);
+      padding-top: 36px;
+      max-width: 640px;
+    }
+    .hero-stat { flex: 1; }
+    .hero-stat + .hero-stat { border-left: 1px solid rgba(71,71,71,.12); padding-left: 32px; }
+    .hs-num {
+      font-family: var(--fh); font-size: 32px; font-weight: 700;
+      color: #474747; letter-spacing: -1px; line-height: 1; margin-bottom: 4px;
+    }
+    .hs-num span { color: var(--brand); }
+    .hs-lbl { font-size: 13px; color: var(--muted); line-height: 1.4; }
+
+    /* ═══════════════════════════════════════════
+       MARQUEE
+    ════════════════════════════════════════════ */
+    .marquee-wrap {
+      background: var(--brand);
+      padding: 14px 0;
+      overflow: hidden;
+    }
+    .marquee-track { display: flex; width: max-content; }
+    .marquee-track .run {
+      display: flex; align-items: center; gap: 0;
+      animation: marquee 28s linear infinite;
+      will-change: transform;
+    }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .marquee-item {
+      display: flex; align-items: center; gap: 20px;
+      padding: 0 32px;
+      font-family: var(--fh); font-weight: 700; font-size: 13px;
+      color: var(--white); letter-spacing: .3px; white-space: nowrap;
+    }
+    .marquee-dot { width: 4px; height: 4px; background: rgba(255,255,255,.4); border-radius: 50%; }
+
+    /* ═══════════════════════════════════════════
+       EDITORIAL STATEMENT
+    ════════════════════════════════════════════ */
+    .statement-section {
+      background: var(--bg-soft);
+      padding: 120px 56px;
+    }
+    .statement-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 3fr 2fr; gap: 80px; align-items: end;
+    }
+    .statement-copy {}
+    .statement-h2 {
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.03em;
+      line-height: 1.06;
+      margin-bottom: 0;
+    }
+    .statement-h2 em {
+      font-style: italic;
+      color: var(--brand);
+    }
+    .statement-right {}
+    .statement-body {
+      font-size: 17px; line-height: 1.75; color: var(--body); margin-bottom: 32px;
+    }
+    .statement-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--fh); font-weight: 700; font-size: 14px;
+      color: var(--ink); border-bottom: 1.5px solid var(--brand); padding-bottom: 2px;
+      transition: opacity .15s;
+    }
+    .statement-link:hover { opacity: .7; }
+
+    /* ═══════════════════════════════════════════
+       INTERACTIVE DEMO
+    ════════════════════════════════════════════ */
+    .demo-viz-section {
+      background: var(--white);
+      padding: 100px 56px;
+    }
+    .demo-viz-inner { max-width: 1200px; margin: 0 auto; }
+    .demo-viz-head {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      margin-bottom: 48px;
+    }
+    .demo-viz-head-left {}
+    .demo-viz-head h2 {
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 700; color: var(--ink); letter-spacing: -0.02em;
+    }
+    .demo-hint {
+      font-size: 14px; color: var(--muted);
+      display: flex; align-items: center; gap: 8px;
+      padding-bottom: 6px;
+    }
+    .demo-hint svg { width: 16px; height: 16px; }
+
+    /* Comparison slider */
+    .comp-slider {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      user-select: none;
+      cursor: col-resize;
+      background: #87CEEB;
+      aspect-ratio: 16/7;
+      box-shadow: 0 24px 64px rgba(0,0,0,.12);
+    }
+    .comp-layer {
+      position: absolute; inset: 0;
+    }
+    .comp-after {
+      clip-path: inset(0 0 0 50%);
+      transition: clip-path 0s; /* no lag while dragging */
+    }
+    /* Divider line */
+    .comp-divider {
+      position: absolute; top: 0; bottom: 0;
+      width: 2px; background: var(--white);
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+      box-shadow: 0 0 0 1px rgba(0,0,0,.1);
+    }
+    /* Drag handle */
+    .comp-handle {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 44px; height: 44px;
+      background: var(--white);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,.22);
+      cursor: col-resize;
+    }
+    .comp-handle svg { width: 18px; height: 18px; color: var(--ink); }
+    /* Before/After labels */
+    .comp-label {
+      position: absolute;
+      top: 20px;
+      font-family: var(--fh); font-size: 11px; font-weight: 700;
+      letter-spacing: .8px; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 100px;
+    }
+    .comp-label-before { left: 20px; background: rgba(255,255,255,.88); color: var(--ink); }
+    .comp-label-after  { background: var(--brand); color: var(--white); }
+
+    /* Caption row below slider */
+    .comp-caption {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 20px;
+    }
+    .comp-cap-item { display: flex; align-items: center; gap: 12px; }
+    .comp-swatch { width: 24px; height: 24px; border-radius: 6px; }
+    .comp-cap-label { font-size: 13px; color: var(--muted); }
+    .comp-cap-label strong { display: block; font-family: var(--fh); font-size: 13px; font-weight: 700; color: var(--ink); }
+
+    /* ═══════════════════════════════════════════
+       STICKY HIW
+    ════════════════════════════════════════════ */
+    .hiw-section {
+      background: var(--bg-soft);
+      padding: 0 56px;
+    }
+    .hiw-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+    }
+    /* Left: sticky */
+    .hiw-left {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding-right: 80px;
+      border-right: 1px solid #D8D8D6;
+    }
+    .hiw-left h2 {
+      font-size: clamp(32px, 3.5vw, 48px);
+      font-weight: 700; color: var(--ink);
+      letter-spacing: -0.02em; margin-bottom: 20px;
+    }
+    .hiw-left p { font-size: 17px; line-height: 1.7; color: var(--body); margin-bottom: 40px; }
+    .hiw-step-nav { display: flex; flex-direction: column; gap: 8px; }
+    .nav-pip {
+      display: flex; align-items: center; gap: 14px;
+      font-family: var(--fh); font-size: 13px; font-weight: 600;
+      color: rgba(26,27,30,.3); cursor: pointer;
+      padding: 6px 0;
+      transition: color .25s;
+    }
+    .nav-pip.active { color: var(--ink); }
+    .nav-pip-bar {
+      width: 32px; height: 2px; background: var(--rule); border-radius: 1px;
+      transition: width .3s, background .3s;
+      flex-shrink: 0;
+    }
+    .nav-pip.active .nav-pip-bar { width: 48px; background: var(--brand); }
+
+    /* Right: scrolling steps */
+    .hiw-right { padding: 120px 0 120px 80px; }
+    .hiw-step {
+      padding-bottom: 140px;
+      opacity: .3;
+      transform: translateX(16px);
+      transition: opacity .5s, transform .5s;
+    }
+    .hiw-step:last-child { padding-bottom: 0; }
+    .hiw-step.active { opacity: 1; transform: none; }
+    .step-num-lg {
+      font-family: var(--fh); font-size: 11px; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--brand); margin-bottom: 20px;
+    }
+    .hiw-step h3 {
+      font-size: clamp(24px, 2.5vw, 34px);
+      font-weight: 700; color: var(--ink);
+      letter-spacing: -0.02em; margin-bottom: 16px;
+    }
+    .hiw-step p { font-size: 17px; line-height: 1.75; color: var(--body); max-width: 400px; }
+
+    /* ═══════════════════════════════════════════
+       PRICING
+    ════════════════════════════════════════════ */
+    .price-section {
+      background: var(--white);
+      padding: 120px 56px;
+    }
+    .price-inner { max-width: 1200px; margin: 0 auto; }
+    .price-top {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+      border-bottom: 1px solid var(--rule); padding-bottom: 64px; margin-bottom: 64px;
+    }
+    .price-left {}
+    .price-left h2 {
+      font-size: clamp(36px, 4vw, 52px);
+      font-weight: 700; color: #474747;
+      letter-spacing: -0.025em; margin-bottom: 16px; line-height: 1.05;
+    }
+    .price-left p { font-size: 17px; color: var(--body); line-height: 1.7; }
+    .price-right { padding-top: 8px; }
+    .price-amount-row {
+      display: flex; align-items: baseline; gap: 16px; margin-bottom: 8px;
+    }
+    .price-main {
+      font-family: var(--fh); font-size: 64px; font-weight: 700;
+      color: #474747; letter-spacing: -3px; line-height: 1;
+    }
+    .price-main sup { font-size: 26px; letter-spacing: 0; vertical-align: super; line-height: 0; }
+    .price-main sub { font-size: 20px; vertical-align: baseline; letter-spacing: 0; color: var(--muted); }
+    .price-was {
+      font-family: var(--fh); font-size: 22px;
+      color: #C0C0C0; text-decoration: line-through; letter-spacing: -1px;
+    }
+    .price-badge {
+      display: inline-block; background: var(--brand);
+      color: var(--white); font-family: var(--fh); font-size: 11px; font-weight: 700;
+      letter-spacing: .5px; text-transform: uppercase;
+      padding: 5px 12px; border-radius: 100px; margin-bottom: 24px;
+    }
+    .price-note { font-size: 14px; color: var(--muted); margin-top: 20px; }
+    .price-note strong { color: var(--brand); }
+
+    /* Features grid below */
+    .price-features {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    }
+    .pf-item {
+      background: var(--bg-soft);
+      padding: 28px 24px;
+      display: flex; align-items: flex-start; gap: 14px;
+    }
+    .pf-item:first-child { border-radius: 12px 0 0 12px; }
+    .pf-item:last-child  { border-radius: 0 12px 12px 0; }
+    .pf-check { width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; color: var(--brand); }
+    .pf-text { font-size: 15px; color: var(--body); line-height: 1.5; }
+
+    /* ═══════════════════════════════════════════
+       TESTIMONIAL
+    ════════════════════════════════════════════ */
+    .testi-section {
+      background: var(--bg-soft);
+      padding: 120px 56px;
+    }
+    /* Testimonial section sits after white pricing — bg-soft is correct here */
+    .testi-inner { max-width: 1200px; margin: 0 auto; }
+
+    /* Big pull quote */
+    .pull-quote {
+      max-width: 860px; margin: 0 auto 80px;
+      text-align: center;
+    }
+    .pq-marks {
+      font-family: var(--fh); font-size: 80px; line-height: .6;
+      color: var(--brand); opacity: .25; display: block; margin-bottom: 16px;
+    }
+    .pq-text {
+      font-family: var(--fh); font-size: clamp(22px, 3vw, 34px);
+      font-weight: 700; color: var(--ink);
+      letter-spacing: -0.02em; line-height: 1.3;
+      margin-bottom: 28px;
+    }
+    .pq-author {
+      display: inline-flex; align-items: center; gap: 14px;
+    }
+    .pq-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: linear-gradient(135deg, #FF8000, #FFAF37);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--fh); font-weight: 700; font-size: 14px; color: var(--white);
+    }
+    .pq-name { font-family: var(--fh); font-weight: 700; font-size: 15px; color: var(--ink); }
+    .pq-role { font-size: 13px; color: var(--muted); }
+
+    /* Two supporting quotes */
+    .sub-quotes { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .sq-card { background: var(--white); border-radius: 14px; padding: 28px; }
+    .sq-stars { display: flex; gap: 3px; margin-bottom: 14px; }
+    .sq-star { width: 14px; height: 14px; fill: var(--brand); }
+    .sq-text { font-size: 15px; line-height: 1.7; color: var(--ink); margin-bottom: 20px; font-style: italic; }
+    .sq-author { display: flex; align-items: center; gap: 10px; }
+    .sq-avatar {
+      width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, #474747, #777);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--fh); font-weight: 700; font-size: 12px; color: var(--white);
+    }
+    .sq-name { font-family: var(--fh); font-weight: 700; font-size: 13px; color: var(--ink); }
+    .sq-role { font-size: 12px; color: var(--muted); }
+
+    /* ═══════════════════════════════════════════
+       DEMO FORM
+    ════════════════════════════════════════════ */
+    .form-section {
+      background: var(--deep);
+      padding: 120px 56px;
+      position: relative; overflow: hidden;
+    }
+    /* Subtle orange glow */
+    .form-section::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(255,128,0,.08) 0%, transparent 70%);
+      top: -100px; right: -100px;
+      pointer-events: none;
+    }
+    .form-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: start;
+      position: relative;
+    }
+    .form-left {}
+    .form-left h2 {
+      font-size: clamp(36px, 4vw, 52px);
+      font-weight: 700; color: var(--white);
+      letter-spacing: -0.025em; line-height: 1.05; margin-bottom: 20px;
+    }
+    .form-left p { font-size: 17px; line-height: 1.7; color: rgba(255,255,255,.48); margin-bottom: 44px; }
+    .form-trust { display: flex; flex-direction: column; gap: 14px; }
+    .ft-item { display: flex; align-items: center; gap: 12px; font-size: 15px; color: rgba(255,255,255,.45); }
+    .ft-check { width: 20px; height: 20px; flex-shrink: 0; color: var(--brand); }
+
+    .form-right {}
+    .form-right h3 {
+      font-size: 22px; font-weight: 700; color: var(--white);
+      letter-spacing: -0.3px; margin-bottom: 32px;
+    }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .field { display: flex; flex-direction: column; margin-bottom: 14px; }
+    .field label {
+      font-family: var(--fh); font-size: 11px; font-weight: 700;
+      letter-spacing: .5px; text-transform: uppercase;
+      color: rgba(255,255,255,.4); margin-bottom: 7px;
+    }
+    .field input {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 10px;
+      padding: 13px 16px;
+      font-family: var(--fb); font-size: 15px; color: var(--white);
+      outline: none; width: 100%;
+      transition: border-color .2s, background .2s;
+    }
+    .field input::placeholder { color: rgba(255,255,255,.25); }
+    .field input:focus {
+      border-color: var(--brand);
+      background: rgba(255,128,0,.06);
+    }
+    .form-footer { margin-top: 4px; }
+    .form-privacy { font-size: 12px; color: rgba(255,255,255,.25); margin-top: 14px; text-align: center; }
+
+    /* ═══════════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════════════ */
+    .site-footer {
+      background: #0A0B0C;
+      padding: 28px 56px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+    .ftr-logo { font-family: var(--fh); font-weight: 700; font-size: 16px; color: rgba(255,255,255,.4); }
+    .ftr-logo em { font-style: normal; color: var(--brand); }
+    .ftr-links { display: flex; gap: 24px; }
+    .ftr-links a { font-size: 12px; color: rgba(255,255,255,.25); transition: color .15s; }
+    .ftr-links a:hover { color: rgba(255,255,255,.55); }
+    .ftr-copy { font-size: 12px; color: rgba(255,255,255,.18); }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .statement-inner { grid-template-columns: 1fr; gap: 40px; }
+      .price-top { grid-template-columns: 1fr; gap: 48px; }
+      .price-features { grid-template-columns: 1fr; gap: 2px; }
+      .pf-item:first-child { border-radius: 12px 12px 0 0; }
+      .pf-item:last-child  { border-radius: 0 0 12px 12px; }
+      .form-inner { grid-template-columns: 1fr; gap: 60px; }
+      .hiw-inner { grid-template-columns: 1fr; }
+      .hiw-left { position: static; height: auto; padding: 80px 0 40px; border-right: none; border-bottom: 1px solid var(--rule); }
+      .hiw-right { padding: 60px 0 80px; }
+      .hiw-step { opacity: 1; transform: none; }
+    }
+    @media (max-width: 768px) {
+      .hero { padding: 120px 28px 80px; }
+      .hero-h1 { font-size: 44px; }
+      .hero-stats { flex-direction: column; gap: 24px; }
+      .hero-stat + .hero-stat { border-left: none; border-top: 1px solid rgba(255,255,255,.08); padding-left: 0; padding-top: 24px; }
+      .site-header { padding: 14px 24px; }
+      .statement-section { padding: 80px 28px; }
+      .demo-viz-section { padding: 80px 28px; }
+      .demo-viz-head { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .hiw-section { padding: 0 28px; }
+      .price-section { padding: 80px 28px; }
+      .price-features { grid-template-columns: 1fr; }
+      .testi-section { padding: 80px 28px; }
+      .sub-quotes { grid-template-columns: 1fr; }
+      .form-section { padding: 80px 28px; }
+      .field-row { grid-template-columns: 1fr; }
+      .site-footer { padding: 24px 28px; flex-direction: column; gap: 16px; text-align: center; }
+      .comp-slider { aspect-ratio: 4/3; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════ STICKY HEADER ════ -->
+<header class="site-header" id="hdr" role="banner">
+  <a href="#" class="hdr-logo">Renoworks<em>.</em></a>
+  <a href="#form" class="btn btn-orange btn-sm">Request a Demo</a>
+</header>
+
+
+<!-- ════ HERO ════ -->
+<section class="hero" id="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">
+      <span class="hero-tag-dot"></span>
+      Renoworks Pro — For Contractors
+    </div>
+
+    <h1 class="hero-h1">
+      Homeowners <span class="ul">see it.</span><br>
+      Contractors close it.
+    </h1>
+
+    <p class="hero-sub">
+      Renoworks Pro puts real-time exterior visualization in your hands — so clients stop hesitating and start saying yes.
+    </p>
+
+    <div class="hero-ctas">
+      <a href="#form" class="btn btn-orange btn-lg">Request a Demo</a>
+      <a href="#pricing" class="btn btn-outline-dark">See Pricing</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hs-num">3.5M<span>+</span></div>
+        <div class="hs-lbl">Homeowners served</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hs-num" style="padding-left:32px">350<span>+</span></div>
+        <div class="hs-lbl" style="padding-left:32px">Real product brands</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hs-num" style="padding-left:32px">60<span>%</span></div>
+        <div class="hs-lbl" style="padding-left:32px">More jobs closed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════ MARQUEE ════ -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track">
+    <div class="run">
+      <span class="marquee-item">3.5M+ Homeowners Served<span class="marquee-dot"></span></span>
+      <span class="marquee-item">60% More Jobs Closed On Average<span class="marquee-dot"></span></span>
+      <span class="marquee-item">350+ Real Product Brands<span class="marquee-dot"></span></span>
+      <span class="marquee-item">Trusted Across North America<span class="marquee-dot"></span></span>
+      <span class="marquee-item">From "Maybe" to "Yes" Faster<span class="marquee-dot"></span></span>
+      <span class="marquee-item">Real Homes. Real Products. Real Results.<span class="marquee-dot"></span></span>
+      <span class="marquee-item">3.5M+ Homeowners Served<span class="marquee-dot"></span></span>
+      <span class="marquee-item">60% More Jobs Closed On Average<span class="marquee-dot"></span></span>
+      <span class="marquee-item">350+ Real Product Brands<span class="marquee-dot"></span></span>
+      <span class="marquee-item">Trusted Across North America<span class="marquee-dot"></span></span>
+      <span class="marquee-item">From "Maybe" to "Yes" Faster<span class="marquee-dot"></span></span>
+      <span class="marquee-item">Real Homes. Real Products. Real Results.<span class="marquee-dot"></span></span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════ EDITORIAL STATEMENT ════ -->
+<section class="statement-section" aria-labelledby="stmt-h">
+  <div class="statement-inner">
+    <div class="statement-copy reveal">
+      <span class="eyebrow">The real problem</span>
+      <h2 class="statement-h2" id="stmt-h">
+        You're not losing jobs<br>to price. You're losing<br>them to <em>doubt.</em>
+      </h2>
+    </div>
+    <div class="statement-right reveal reveal-d1">
+      <p class="statement-body">
+        When a homeowner can't visualize the finished project, they stall. They compare quotes. They go with whoever feels safest — usually not you. Renoworks Pro removes that friction by showing them exactly what their home could look like, before a single nail is driven.
+      </p>
+      <a href="#demo-viz" class="statement-link">
+        See it in action
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════ INTERACTIVE DEMO ════ -->
+<section class="demo-viz-section" id="demo-viz" aria-labelledby="viz-h">
+  <div class="demo-viz-inner">
+    <div class="demo-viz-head reveal">
+      <div class="demo-viz-head-left">
+        <span class="eyebrow">Live visualization</span>
+        <h2 id="viz-h">This is what your clients see.</h2>
+      </div>
+      <div class="demo-hint">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path d="M4 8h8M10 5l3 3-3 3"/>
+        </svg>
+        Drag the handle to compare
+      </div>
+    </div>
+
+    <!-- Comparison slider -->
+    <div class="comp-slider reveal reveal-d1" id="compSlider" role="img" aria-label="Before and after visualization of a house exterior. Drag to compare.">
+      <!-- Before (full width, always visible) -->
+      <div class="comp-layer comp-before" id="beforeLayer">
+        <svg viewBox="0 0 1200 525" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="sky1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#A8D8EA"/>
+              <stop offset="100%" stop-color="#C8E8F4"/>
+            </linearGradient>
+          </defs>
+          <!-- Sky -->
+          <rect width="1200" height="525" fill="url(#sky1)"/>
+          <!-- Ground -->
+          <rect y="420" width="1200" height="105" fill="#4A6741"/>
+          <rect y="420" width="1200" height="18" fill="#3D5736"/>
+          <!-- House body — before (warm tan siding) -->
+          <rect x="180" y="200" width="840" height="225" fill="#C8A87A"/>
+          <!-- Clapboard lines -->
+          <line x1="180" y1="218" x2="1020" y2="218" stroke="#B8966A" stroke-width="1.5"/>
+          <line x1="180" y1="236" x2="1020" y2="236" stroke="#B8966A" stroke-width="1.5"/>
+          <line x1="180" y1="254" x2="1020" y2="254" stroke="#B8966A" stroke-width="1.5"/>
+          <line x1="180" y1="272" x2="1020" y2="272" stroke="#B8966A" stroke-width="1.5"/>
+          <line x1="180" y1="290" x2="1020" y2="290" stroke="#B8966A" stroke-width="1.5"/>
+          <line x1="180" y1="308" x2="1020" y2="308" stroke="#B8966A" stroke-width="1.5"/>
+          <line x1="180" y1="326" x2="1020" y2="326" stroke="#B8966A" stroke-width="1.5"/>
+          <line x1="180" y1="344" x2="1020" y2="344" stroke="#B8966A" stroke-width="1.5"/>
+          <line x1="180" y1="362" x2="1020" y2="362" stroke="#B8966A" stroke-width="1.5"/>
+          <line x1="180" y1="380" x2="1020" y2="380" stroke="#B8966A" stroke-width="1.5"/>
+          <line x1="180" y1="398" x2="1020" y2="398" stroke="#B8966A" stroke-width="1.5"/>
+          <!-- Roof — before (warm brown) -->
+          <polygon points="130,200 600,55 1070,200" fill="#7A4E2D"/>
+          <polygon points="130,200 600,55 1070,200" fill="rgba(0,0,0,0.06)"/>
+          <!-- Fascia -->
+          <rect x="128" y="194" width="944" height="12" fill="#8A5E3D"/>
+          <!-- Left window group -->
+          <rect x="220" y="235" width="180" height="130" rx="4" fill="#D4EDFF" opacity="0.88"/>
+          <rect x="220" y="235" width="180" height="130" rx="4" fill="none" stroke="#A89068" stroke-width="2"/>
+          <line x1="310" y1="235" x2="310" y2="365" stroke="#A89068" stroke-width="1.5"/>
+          <line x1="220" y1="300" x2="400" y2="300" stroke="#A89068" stroke-width="1.5"/>
+          <!-- Center window group -->
+          <rect x="510" y="235" width="180" height="130" rx="4" fill="#D4EDFF" opacity="0.88"/>
+          <rect x="510" y="235" width="180" height="130" rx="4" fill="none" stroke="#A89068" stroke-width="2"/>
+          <line x1="600" y1="235" x2="600" y2="365" stroke="#A89068" stroke-width="1.5"/>
+          <line x1="510" y1="300" x2="690" y2="300" stroke="#A89068" stroke-width="1.5"/>
+          <!-- Right window group -->
+          <rect x="800" y="235" width="180" height="130" rx="4" fill="#D4EDFF" opacity="0.88"/>
+          <rect x="800" y="235" width="180" height="130" rx="4" fill="none" stroke="#A89068" stroke-width="2"/>
+          <line x1="890" y1="235" x2="890" y2="365" stroke="#A89068" stroke-width="1.5"/>
+          <line x1="800" y1="300" x2="980" y2="300" stroke="#A89068" stroke-width="1.5"/>
+          <!-- Door -->
+          <rect x="522" y="340" width="156" height="85" rx="4" fill="#5A3C28"/>
+          <rect x="527" y="345" width="66" height="75" rx="3" fill="#6A4C38" opacity="0.6"/>
+          <rect x="606" y="345" width="66" height="75" rx="3" fill="#6A4C38" opacity="0.6"/>
+          <circle cx="596" cy="385" r="5" fill="#C8A050"/>
+        </svg>
+      </div>
+
+      <!-- After (clipped) -->
+      <div class="comp-layer comp-after" id="afterLayer">
+        <svg viewBox="0 0 1200 525" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#A8D8EA"/>
+              <stop offset="100%" stop-color="#C8E8F4"/>
+            </linearGradient>
+          </defs>
+          <rect width="1200" height="525" fill="url(#sky2)"/>
+          <rect y="420" width="1200" height="105" fill="#4A6741"/>
+          <rect y="420" width="1200" height="18" fill="#3D5736"/>
+          <!-- House body — after (deep slate blue) -->
+          <rect x="180" y="200" width="840" height="225" fill="#2E4060"/>
+          <line x1="180" y1="218" x2="1020" y2="218" stroke="#253550" stroke-width="1.5"/>
+          <line x1="180" y1="236" x2="1020" y2="236" stroke="#253550" stroke-width="1.5"/>
+          <line x1="180" y1="254" x2="1020" y2="254" stroke="#253550" stroke-width="1.5"/>
+          <line x1="180" y1="272" x2="1020" y2="272" stroke="#253550" stroke-width="1.5"/>
+          <line x1="180" y1="290" x2="1020" y2="290" stroke="#253550" stroke-width="1.5"/>
+          <line x1="180" y1="308" x2="1020" y2="308" stroke="#253550" stroke-width="1.5"/>
+          <line x1="180" y1="326" x2="1020" y2="326" stroke="#253550" stroke-width="1.5"/>
+          <line x1="180" y1="344" x2="1020" y2="344" stroke="#253550" stroke-width="1.5"/>
+          <line x1="180" y1="362" x2="1020" y2="362" stroke="#253550" stroke-width="1.5"/>
+          <line x1="180" y1="380" x2="1020" y2="380" stroke="#253550" stroke-width="1.5"/>
+          <line x1="180" y1="398" x2="1020" y2="398" stroke="#253550" stroke-width="1.5"/>
+          <!-- Roof — after (near-black) -->
+          <polygon points="130,200 600,55 1070,200" fill="#1A1208"/>
+          <rect x="128" y="194" width="944" height="12" fill="#243050"/>
+          <!-- Left window group -->
+          <rect x="220" y="235" width="180" height="130" rx="4" fill="#D4EDFF" opacity="0.88"/>
+          <rect x="220" y="235" width="180" height="130" rx="4" fill="none" stroke="#4A607A" stroke-width="2"/>
+          <line x1="310" y1="235" x2="310" y2="365" stroke="#4A607A" stroke-width="1.5"/>
+          <line x1="220" y1="300" x2="400" y2="300" stroke="#4A607A" stroke-width="1.5"/>
+          <!-- Center window group -->
+          <rect x="510" y="235" width="180" height="130" rx="4" fill="#D4EDFF" opacity="0.88"/>
+          <rect x="510" y="235" width="180" height="130" rx="4" fill="none" stroke="#4A607A" stroke-width="2"/>
+          <line x1="600" y1="235" x2="600" y2="365" stroke="#4A607A" stroke-width="1.5"/>
+          <line x1="510" y1="300" x2="690" y2="300" stroke="#4A607A" stroke-width="1.5"/>
+          <!-- Right window group -->
+          <rect x="800" y="235" width="180" height="130" rx="4" fill="#D4EDFF" opacity="0.88"/>
+          <rect x="800" y="235" width="180" height="130" rx="4" fill="none" stroke="#4A607A" stroke-width="2"/>
+          <line x1="890" y1="235" x2="890" y2="365" stroke="#4A607A" stroke-width="1.5"/>
+          <line x1="800" y1="300" x2="980" y2="300" stroke="#4A607A" stroke-width="1.5"/>
+          <!-- Door -->
+          <rect x="522" y="340" width="156" height="85" rx="4" fill="#1A2A3A"/>
+          <rect x="527" y="345" width="66" height="75" rx="3" fill="#243040" opacity="0.6"/>
+          <rect x="606" y="345" width="66" height="75" rx="3" fill="#243040" opacity="0.6"/>
+          <circle cx="596" cy="385" r="5" fill="#C8A050"/>
+        </svg>
+      </div>
+
+      <!-- Divider + Handle -->
+      <div class="comp-divider" id="compDivider"></div>
+      <div class="comp-handle" id="compHandle" role="slider" aria-label="Comparison slider" aria-valuemin="5" aria-valuemax="95" aria-valuenow="50">
+        <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M6 4l-4 5 4 5M12 4l4 5-4 5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="comp-label comp-label-before" id="lblBefore">Before</div>
+      <div class="comp-label comp-label-after" id="lblAfter" style="right:20px">After</div>
+    </div>
+
+    <!-- Caption -->
+    <div class="comp-caption reveal">
+      <div class="comp-cap-item">
+        <div class="comp-swatch" style="background:#C8A87A"></div>
+        <div class="comp-cap-label"><strong>Before</strong>Warm Tan — existing siding</div>
+      </div>
+      <div class="comp-cap-item">
+        <div class="comp-swatch" style="background:#2E4060"></div>
+        <div class="comp-cap-label" style="text-align:right"><strong>After</strong>Deep Slate Blue — proposed product</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════ HOW IT WORKS — STICKY SCROLL ════ -->
+<section class="hiw-section" aria-labelledby="hiw-h">
+  <div class="hiw-inner">
+
+    <!-- Sticky left -->
+    <div class="hiw-left">
+      <span class="eyebrow">How it works</span>
+      <h2 id="hiw-h">Three steps to a confident yes.</h2>
+      <p>Renoworks Pro fits naturally into your existing sales process — no extra steps, no tech headaches.</p>
+      <nav class="hiw-step-nav" aria-label="Steps">
+        <div class="nav-pip active" data-step="0">
+          <div class="nav-pip-bar"></div>Upload the home
+        </div>
+        <div class="nav-pip" data-step="1">
+          <div class="nav-pip-bar"></div>Apply products live
+        </div>
+        <div class="nav-pip" data-step="2">
+          <div class="nav-pip-bar"></div>Share &amp; close
+        </div>
+      </nav>
+    </div>
+
+    <!-- Scrolling right -->
+    <div class="hiw-right">
+      <div class="hiw-step active" data-step="0">
+        <div class="step-num-lg">Step 01</div>
+        <h3>Upload a photo of their home.</h3>
+        <p>Take a photo during your site visit and upload it directly into Renoworks Pro. No design experience needed. Works from any device, in minutes.</p>
+      </div>
+      <div class="hiw-step" data-step="1">
+        <div class="step-num-lg">Step 02</div>
+        <h3>Apply products in real time.</h3>
+        <p>Browse from 350+ real exterior product brands — siding, roofing, windows, trim. Apply colors and materials live on the client's actual home, right in the room.</p>
+      </div>
+      <div class="hiw-step" data-step="2">
+        <div class="step-num-lg">Step 03</div>
+        <h3>Share it. They see it. They sign.</h3>
+        <p>Send a shareable design link directly to the homeowner. They can review it on any device, at any time. They see the finished result on their house — and they say yes.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════ PRICING ════ -->
+<section class="price-section" id="pricing" aria-labelledby="price-h">
+  <div class="price-inner">
+    <div class="price-top reveal">
+      <div class="price-left">
+        <span class="eyebrow">Pricing</span>
+        <h2 id="price-h">Simple pricing.<br>No surprises.</h2>
+        <p>One plan. Everything included. No per-seat fees, no feature tiers, no hidden costs.</p>
+      </div>
+      <div class="price-right">
+        <div class="price-badge">Limited Offer</div>
+        <div class="price-amount-row">
+          <!-- UPDATE: Replace with actual pricing -->
+          <div class="price-main"><sup>$</sup>99<sub>/mo</sub></div>
+          <div class="price-was">$149</div>
+        </div>
+        <a href="#form" class="btn btn-orange btn-lg">Request a Demo</a>
+        <p class="price-note">Sale pricing available for a limited time. <strong>Lock it in on a demo call.</strong></p>
+      </div>
+    </div>
+
+    <!-- Features bar -->
+    <div class="price-features reveal">
+      <div class="pf-item">
+        <svg class="pf-check" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="9" r="8"/><path d="M5 9l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="pf-text">Full access to Renoworks Pro visualizer</span>
+      </div>
+      <div class="pf-item">
+        <svg class="pf-check" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="9" r="8"/><path d="M5 9l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="pf-text">350+ real product brands &amp; colors</span>
+      </div>
+      <div class="pf-item">
+        <svg class="pf-check" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="9" r="8"/><path d="M5 9l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="pf-text">Unlimited projects &amp; shareable client links</span>
+      </div>
+      <div class="pf-item">
+        <svg class="pf-check" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="9" r="8"/><path d="M5 9l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="pf-text">Mobile-friendly homeowner view</span>
+      </div>
+      <div class="pf-item">
+        <svg class="pf-check" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="9" r="8"/><path d="M5 9l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="pf-text">Onboarding &amp; dedicated setup support</span>
+      </div>
+      <div class="pf-item">
+        <svg class="pf-check" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="9" r="8"/><path d="M5 9l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="pf-text">No credit card required to demo</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════ TESTIMONIAL ════ -->
+<section class="testi-section" aria-labelledby="testi-h">
+  <div class="testi-inner">
+    <span class="eyebrow" style="display:block;text-align:center;margin-bottom:60px" id="testi-h">What contractors say</span>
+
+    <!-- Pull quote -->
+    <div class="pull-quote reveal">
+      <span class="pq-marks" aria-hidden="true">"</span>
+      <p class="pq-text">
+        "I closed 3 jobs in my first week. Homeowners could actually see what we were proposing on their house. That changes everything about the sales conversation."
+      </p>
+      <div class="pq-author">
+        <div class="pq-avatar" aria-hidden="true">MT</div>
+        <div>
+          <div class="pq-name">Mike T.</div>
+          <div class="pq-role">Roofing &amp; Siding Contractor — Ontario</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Supporting quotes -->
+    <div class="sub-quotes">
+      <div class="sq-card reveal">
+        <div class="sq-stars" aria-label="5 stars">
+          <svg class="sq-star" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.5.6 3.6L7 9.1 4.8 11l.6-3.6-2.6-2.5 3.6-.5z"/></svg>
+          <svg class="sq-star" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.5.6 3.6L7 9.1 4.8 11l.6-3.6-2.6-2.5 3.6-.5z"/></svg>
+          <svg class="sq-star" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.5.6 3.6L7 9.1 4.8 11l.6-3.6-2.6-2.5 3.6-.5z"/></svg>
+          <svg class="sq-star" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.5.6 3.6L7 9.1 4.8 11l.6-3.6-2.6-2.5 3.6-.5z"/></svg>
+          <svg class="sq-star" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.5.6 3.6L7 9.1 4.8 11l.6-3.6-2.6-2.5 3.6-.5z"/></svg>
+        </div>
+        <p class="sq-text">"We used to spend two hours per client going through options. Now we're done in twenty minutes. They leave with a clear decision — usually yes."</p>
+        <div class="sq-author">
+          <div class="sq-avatar" aria-hidden="true">JR</div>
+          <div>
+            <div class="sq-name">Jason R.</div>
+            <div class="sq-role">Exterior Remodeler — Texas</div>
+          </div>
+        </div>
+      </div>
+      <div class="sq-card reveal reveal-d1">
+        <div class="sq-stars" aria-label="5 stars">
+          <svg class="sq-star" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.5.6 3.6L7 9.1 4.8 11l.6-3.6-2.6-2.5 3.6-.5z"/></svg>
+          <svg class="sq-star" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.5.6 3.6L7 9.1 4.8 11l.6-3.6-2.6-2.5 3.6-.5z"/></svg>
+          <svg class="sq-star" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.5.6 3.6L7 9.1 4.8 11l.6-3.6-2.6-2.5 3.6-.5z"/></svg>
+          <svg class="sq-star" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.5.6 3.6L7 9.1 4.8 11l.6-3.6-2.6-2.5 3.6-.5z"/></svg>
+          <svg class="sq-star" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.5.6 3.6L7 9.1 4.8 11l.6-3.6-2.6-2.5 3.6-.5z"/></svg>
+        </div>
+        <p class="sq-text">"Clients used to ghost me after the quote. Now they send messages asking about colors. They're invested before we even start. That's a completely different dynamic."</p>
+        <div class="sq-author">
+          <div class="sq-avatar" aria-hidden="true">SL</div>
+          <div>
+            <div class="sq-name">Sandra L.</div>
+            <div class="sq-role">Home Renovation — British Columbia</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════ DEMO FORM ════ -->
+<section class="form-section" id="form" aria-labelledby="form-h">
+  <div class="form-inner">
+    <div class="form-left reveal">
+      <span class="eyebrow">Book a demo</span>
+      <h2 id="form-h">See it on your call.</h2>
+      <p>30 minutes. We'll walk through Renoworks Pro live — using a real project from your area. No slides, no pressure. Just the tool.</p>
+      <div class="form-trust">
+        <div class="ft-item">
+          <svg class="ft-check" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          30-minute live walkthrough
+        </div>
+        <div class="ft-item">
+          <svg class="ft-check" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Real project from your area
+        </div>
+        <div class="ft-item">
+          <svg class="ft-check" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Sale pricing locked in on the call
+        </div>
+        <div class="ft-item">
+          <svg class="ft-check" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          No credit card. No commitment.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-right reveal reveal-d1">
+      <h3>Request a Demo</h3>
+      <!-- UPDATE: Replace action="#" with your HubSpot/Calendly/form endpoint -->
+      <form action="#" method="POST" novalidate>
+        <div class="field-row">
+          <div class="field">
+            <label for="fn">First Name</label>
+            <input type="text" id="fn" name="first_name" placeholder="John" required autocomplete="given-name">
+          </div>
+          <div class="field">
+            <label for="ln">Last Name</label>
+            <input type="text" id="ln" name="last_name" placeholder="Smith" required autocomplete="family-name">
+          </div>
+        </div>
+        <div class="field">
+          <label for="em">Work Email</label>
+          <input type="email" id="em" name="email" placeholder="john@company.com" required autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="ph">Phone</label>
+          <input type="tel" id="ph" name="phone" placeholder="+1 (555) 000-0000" autocomplete="tel">
+        </div>
+        <div class="field">
+          <label for="co">Company</label>
+          <input type="text" id="co" name="company" placeholder="Smith Roofing &amp; Siding" required autocomplete="organization">
+        </div>
+        <div class="form-footer">
+          <button type="submit" class="btn btn-orange btn-lg btn-full">Schedule My Demo</button>
+        </div>
+      </form>
+      <p class="form-privacy">We respect your privacy. No spam — just a demo.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════ FOOTER ════ -->
+<footer class="site-footer" role="contentinfo">
+  <div class="ftr-logo">Renoworks<em>.</em></div>
+  <nav class="ftr-links" aria-label="Footer">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Use</a>
+  </nav>
+  <div class="ftr-copy">© 2026 Renoworks Software Inc.</div>
+</footer>
+
+
+<script>
+/* ── Sticky header ── */
+const hdr  = document.getElementById('hdr');
+const hero = document.getElementById('hero');
+new IntersectionObserver(([e]) => hdr.classList.toggle('up', !e.isIntersecting), { threshold: 0.05 }).observe(hero);
+
+/* ── Scroll reveal ── */
+const revealEls = document.querySelectorAll('.reveal');
+const revealIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revealIO.unobserve(e.target); } });
+}, { threshold: 0.12 });
+revealEls.forEach(el => revealIO.observe(el));
+
+/* ── Interactive comparison slider ── */
+(function() {
+  const wrap   = document.getElementById('compSlider');
+  const after  = document.getElementById('afterLayer');
+  const div    = document.getElementById('compDivider');
+  const handle = document.getElementById('compHandle');
+  const lblAfter = document.getElementById('lblAfter');
+  let dragging = false;
+
+  function setPos(clientX) {
+    const r = wrap.getBoundingClientRect();
+    let p = Math.max(0.04, Math.min(0.96, (clientX - r.left) / r.width));
+    after.style.clipPath = `inset(0 0 0 ${p * 100}%)`;
+    div.style.left = `${p * 100}%`;
+    handle.style.left = `${p * 100}%`;
+    handle.style.top = '50%';
+    handle.setAttribute('aria-valuenow', Math.round(p * 100));
+    // Adjust after label so it doesn't overlap handle
+    lblAfter.style.right = `${(1 - p) * 100 - 2}%`;
+  }
+
+  handle.addEventListener('mousedown', e => { dragging = true; e.preventDefault(); });
+  document.addEventListener('mouseup',   () => dragging = false);
+  document.addEventListener('mousemove', e => { if (dragging) setPos(e.clientX); });
+
+  handle.addEventListener('touchstart', e => { dragging = true; e.preventDefault(); }, { passive: false });
+  document.addEventListener('touchend',   () => dragging = false);
+  document.addEventListener('touchmove',  e => { if (dragging) setPos(e.touches[0].clientX); }, { passive: true });
+
+  // Click anywhere on slider moves handle
+  wrap.addEventListener('click', e => setPos(e.clientX));
+})();
+
+/* ── HIW sticky scroll step tracking ── */
+(function() {
+  const steps = document.querySelectorAll('.hiw-step');
+  const pips  = document.querySelectorAll('.nav-pip');
+
+  function activate(i) {
+    steps.forEach((s, si) => s.classList.toggle('active', si === i));
+    pips.forEach((p, pi)  => p.classList.toggle('active',  pi === i));
+  }
+
+  const stepIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const i = parseInt(e.target.dataset.step);
+        activate(i);
+      }
+    });
+  }, { threshold: 0.5, rootMargin: '-20% 0px -20% 0px' });
+
+  steps.forEach(s => stepIO.observe(s));
+
+  // Pip clicks scroll to step
+  pips.forEach((p, i) => {
+    p.addEventListener('click', () => steps[i].scrollIntoView({ behavior: 'smooth', block: 'center' }));
+  });
+})();
+</script>
+
+</body>
+</html>
