@@ -573,6 +573,10 @@
       margin-top: 20px;
       max-width: 800px;
     }
+
+    /* ═══════════════════════════════════════════
+       LOGO CAROUSEL
+    ════════════════════════════════════════════ */
     .offer-scope-note {
       font-size: 14px;
       color: var(--body);
@@ -652,9 +656,6 @@
       flex-shrink: 0;
       color: #C15A1A;
     }
-    /* ═══════════════════════════════════════════
-       LOGO CAROUSEL
-    ════════════════════════════════════════════ */
     .logos-section { background: var(--white); padding: 64px 0; overflow: hidden; }
     .logos-label {
       text-align: center; font-family: var(--fh); font-size: 12px;
@@ -802,41 +803,6 @@
 
     .signup-privacy { font-size: 12px; color: var(--muted); margin-top: 14px; text-align: center; }
 
-    /* HubSpot form overrides */
-    .signup-right .hs-form-private { width: 100% !important; }
-    .signup-right .hs-form-private .hs-form-field { margin-bottom: 14px; }
-    .signup-right .hs-form-private label {
-      font-family: var(--fh); font-size: 11px; font-weight: 700;
-      letter-spacing: .5px; text-transform: uppercase; color: var(--muted);
-      display: block; margin-bottom: 7px;
-    }
-    .signup-right .hs-form-private input[type="text"],
-    .signup-right .hs-form-private input[type="email"],
-    .signup-right .hs-form-private input[type="tel"],
-    .signup-right .hs-form-private input[type="number"],
-    .signup-right .hs-form-private select,
-    .signup-right .hs-form-private textarea {
-      width: 100% !important; background: var(--bg-soft); border: 1px solid var(--rule);
-      border-radius: 10px; padding: 13px 16px;
-      font-family: var(--fb); font-size: 15px; color: var(--ink);
-      outline: none; transition: border-color .2s, background .2s; box-sizing: border-box;
-    }
-    .signup-right .hs-form-private input:focus,
-    .signup-right .hs-form-private select:focus,
-    .signup-right .hs-form-private textarea:focus {
-      border-color: var(--brand); background: var(--white);
-    }
-    .signup-right .hs-form-private .hs-button {
-      width: 100%; background: var(--brand); color: var(--white); border: none;
-      border-radius: 100px; padding: 14px 28px;
-      font-family: var(--fh); font-weight: 700; font-size: 15px; cursor: pointer;
-      transition: opacity .18s, transform .15s;
-    }
-    .signup-right .hs-form-private .hs-button:hover { opacity: .86; transform: translateY(-1px); }
-    .signup-right .hs-form-private .hs-error-msgs { list-style: none; margin: 4px 0 0; }
-    .signup-right .hs-form-private .hs-error-msgs li { font-size: 12px; color: #FF6B6B; }
-    .signup-right .hs-form-private fieldset { max-width: none !important; border: none; padding: 0; margin: 0; }
-
     /* ── Plan toggle ── */
     .plan-toggle { display: flex; gap: 10px; }
     .plan-option {
@@ -922,6 +888,7 @@
       .hiw-step { opacity: 1; transform: none; }
     }
 
+    /* ── Tablet portrait ── */
     @media (max-width: 640px) {
       .offer-col-desktop { display: none; }
       .offer-col-mobile { display: inline; }
@@ -932,7 +899,6 @@
       .offer-cell-text { font-size: 12px; max-width: none; }
     }
 
-    /* ── Tablet portrait ── */
     @media (max-width: 768px) {
       .hero-content { padding: 110px 28px 24px; }
       .hero-h1 { font-size: 44px; max-width: none; }
@@ -1053,7 +1019,7 @@
 
 <!-- ════ STICKY HEADER ════ -->
 <header class="site-header" id="hdr" role="banner">
-  <a href="#" class="hdr-logo"><img src="images/renoworks-logo.png" alt="Renoworks"></a>
+  <a href="#" class="hdr-logo"><img src="../images/renoworks-logo.png" alt="Renoworks"></a>
   <a href="#signup" class="btn btn-orange btn-sm">Get Started</a>
 </header>
 
@@ -1080,7 +1046,7 @@
 
       <div class="hero-ctas">
         <a href="#signup" class="btn btn-orange btn-lg">Get Started</a>
-        <a href="#signup" class="btn btn-outline-white">Contact Sales</a>
+        <a href="#pricing" class="btn btn-outline-white">See Pricing</a>
       </div>
 
       <div class="hero-stats">
@@ -1112,7 +1078,7 @@
       <div class="device device-laptop">
         <div class="device-bezel">
           <div class="device-screen">
-            <img src="images/Renoworks-Preview-4-product-preview.jpg" alt="">
+            <img src="../images/Renoworks-Preview-4-product-preview.jpg" alt="">
           </div>
         </div>
       </div>
@@ -1181,10 +1147,10 @@
 
     <div class="comp-slider reveal reveal-d1" id="compSlider" role="img" aria-label="Before and after visualization of a house exterior. Drag to compare.">
       <div class="comp-layer comp-before" id="beforeLayer">
-        <img src="images/farmhouse-before.jpg" alt="Home exterior before renovation — original white farmhouse">
+        <img src="../images/farmhouse-before.jpg" alt="Home exterior before renovation — original white farmhouse">
       </div>
       <div class="comp-layer comp-after" id="afterLayer">
-        <img src="images/farmhouse-enhanced.jpg" alt="Home exterior after renovation — sage green siding with Renoworks Image Enhance applied">
+        <img src="../images/farmhouse-enhanced.jpg" alt="Home exterior after renovation — sage green siding with Renoworks Image Enhance applied">
       </div>
       <div class="comp-divider" id="compDivider"></div>
       <div class="comp-handle" id="compHandle" role="slider" aria-label="Comparison slider" aria-valuemin="5" aria-valuemax="95" aria-valuenow="50">
@@ -1237,7 +1203,7 @@
         <h3>Upload a photo of their home.</h3>
         <p>Take a photo during your site visit and upload it directly into Renoworks Pro. No design experience needed. Works from any device, in minutes.</p>
         <div class="hiw-step-img">
-          <img src="images/twostory-before.jpg" alt="Real home photo uploaded into Renoworks Pro">
+          <img src="../images/twostory-before.jpg" alt="Real home photo uploaded into Renoworks Pro">
         </div>
       </div>
       <div class="hiw-step" data-step="1">
@@ -1245,7 +1211,7 @@
         <h3>Apply products in real time.</h3>
         <p>Browse from 350+ real exterior product brands — siding, roofing, windows, trim. Apply colors and materials live on the client's actual home, right in the room.</p>
         <div class="hiw-step-img">
-          <img src="images/twostory-after.jpg" alt="Renoworks visualization with new siding and products applied">
+          <img src="../images/twostory-after.jpg" alt="Renoworks visualization with new siding and products applied">
         </div>
       </div>
       <div class="hiw-step" data-step="2">
@@ -1253,11 +1219,63 @@
         <h3>Share it. They see it. They sign.</h3>
         <p>Send a shareable design link directly to the homeowner. They can review it on any device, at any time. They see the finished result on their house — and they say yes.</p>
         <div class="hiw-step-img">
-          <img src="images/twostory-enhanced.jpg" alt="Two-story home with Image Enhance applied — the polished result clients receive">
+          <img src="../images/twostory-enhanced.jpg" alt="Two-story home with Image Enhance applied — the polished result clients receive">
         </div>
       </div>
     </div>
 
+  </div>
+</section>
+
+
+<!-- ════ PRICING ════ -->
+<section class="price-section" id="pricing" aria-labelledby="price-h">
+  <div class="price-inner">
+    <div class="price-top reveal">
+      <div class="price-left">
+        <span class="eyebrow">Pricing</span>
+        <h2 id="price-h">Simple pricing.<br>No surprises.</h2>
+        <p>Core visualization for your sales process. 4 seats, 40 visualization projects, training, and support included.</p>
+      </div>
+      <div class="price-right">
+        <div class="price-badge">Limited Offer</div>
+        <div class="price-amount-row">
+          <div class="price-main"><sup>$</sup>900<sub>/yr</sub></div>
+          <div class="price-was">$1,788</div>
+        </div>
+        <a href="#signup" class="btn btn-orange btn-lg">Get Started</a>
+        <p class="price-note">Annual billing only.</p>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <div class="price-features">
+        <div class="pf-item">
+          <svg class="pf-check" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="9" r="8"/><path d="M5 9l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="pf-text">Use it as part of your estimating/sales process</span>
+        </div>
+        <div class="pf-item">
+          <svg class="pf-check" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="9" r="8"/><path d="M5 9l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="pf-text">40 visualization projects</span>
+        </div>
+        <div class="pf-item">
+          <svg class="pf-check" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="9" r="8"/><path d="M5 9l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="pf-text">4 seats</span>
+        </div>
+        <div class="pf-item">
+          <svg class="pf-check" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="9" r="8"/><path d="M5 9l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="pf-text">Share designs at the click of a button</span>
+        </div>
+        <div class="pf-item">
+          <svg class="pf-check" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="9" r="8"/><path d="M5 9l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="pf-text">Training and support</span>
+        </div>
+        <div class="pf-item">
+          <svg class="pf-check" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="9" r="8"/><path d="M5 9l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="pf-text">Use it on any device</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1380,42 +1398,78 @@
 </div>
 
 
-<!-- ════ CONTACT FORM ════ -->
+<!-- ════ SIGNUP + CHARGEBEE REDIRECT ════ -->
 <section class="signup-section" id="signup" aria-labelledby="signup-h">
   <div class="signup-inner">
     <div class="signup-left reveal">
       <span class="eyebrow">Get started</span>
-      <h2 id="signup-h">Talk to our team.</h2>
-      <p>Tell us a bit about your company and goals. We will follow up to walk you through Renoworks Pro and recommend the best plan.</p>
+      <h2 id="signup-h">Sign up in minutes.</h2>
+      <p>Get the promotional offer for core visualization: 4 seats, 40 visualization projects, training, and support for $900 per year.</p>
       <div class="signup-trust">
         <div class="ft-item">
           <svg class="ft-check" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Personalized walkthrough
+          Instant access
         </div>
         <div class="ft-item">
           <svg class="ft-check" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Plan guidance from our team
+          Annual plan
         </div>
         <div class="ft-item">
           <svg class="ft-check" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Fast follow-up
+          4 seats included
         </div>
       </div>
     </div>
 
     <div class="signup-right reveal reveal-d1">
-      <div class="signup-step">
-        <h3>Request a demo</h3>
-        <p class="step-desc">Fill out the form and our team will follow up.</p>
-        <div id="hs-form-container"></div>
+      <!-- Signup form — single step -->
+      <div id="form-container">
+        <div class="signup-step">
+          <h3>Claim the annual promotional offer</h3>
+          <p class="step-desc">Two fields, then we'll take you to secure annual checkout.</p>
+          <div class="field-group">
+            <label for="email">Work Email</label>
+            <input type="email" id="email" placeholder="john@company.com" required>
+            <div class="field-error">Valid email is required</div>
+          </div>
+          <div class="field-group">
+            <label for="company">Company Name</label>
+            <input type="text" id="company" placeholder="Smith Remodeling" required>
+            <div class="field-error">Company name is required</div>
+          </div>
+          <div style="margin-top: 8px;">
+            <div class="plan-toggle">
+              <label class="plan-option active" data-plan="yearly">
+                <input type="radio" name="plan" value="Renoworks-Pro-Self-Sign-Up-USD-Yearly" checked>
+                <span class="plan-label">Annual promotional offer</span>
+                <span class="plan-price">$900<small>/yr</small></span>
+                <span class="plan-save"><s>$1,788</s> regular price</span>
+              </label>
+            </div>
+          </div>
+          <div class="signup-nav">
+            <button class="btn btn-orange btn-full" id="submitBtn" onclick="submitSignup()">Continue to Checkout</button>
+          </div>
+          <p class="signup-privacy">Secure checkout powered by Chargebee.</p>
+        </div>
+      </div>
+
+      <!-- Success message -->
+      <div class="signup-success" id="signupSuccess">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+          <circle cx="32" cy="32" r="28"/>
+          <path d="M20 32l8 8 16-16" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3>You're all set!</h3>
+        <p>Check your inbox for login details. Your Renoworks Pro account is ready.</p>
       </div>
     </div>
   </div>
 </section>
 
 
-<!-- ════ PROMO VS STANDARD COMPARE ════ -->
-<section class="price-section" id="offer-compare" aria-labelledby="included-h">
+<!-- ════ FOOTER ════ -->
+<section class="price-section" aria-labelledby="included-h">
   <div class="price-inner">
     <div class="reveal">
       <div class="price-left" style="margin-bottom: 24px;">
@@ -1551,10 +1605,8 @@
   </div>
 </section>
 
-
-<!-- ════ FOOTER ════ -->
 <footer class="site-footer" role="contentinfo">
-  <div class="ftr-logo"><img src="images/renoworks-logo.png" alt="Renoworks"></div>
+  <div class="ftr-logo"><img src="../images/renoworks-logo.png" alt="Renoworks"></div>
   <nav class="ftr-links" aria-label="Footer">
     <a href="#">Privacy Policy</a>
     <a href="#">Terms of Use</a>
@@ -1662,15 +1714,91 @@ revealEls.forEach(el => revealIO.observe(el));
 })();
 </script>
 
-<!-- HubSpot form -->
-<script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+<!-- Signup form + Chargebee redirect (no Chargebee JS — direct URL) -->
 <script>
-  hbspt.forms.create({
-    portalId: "4255624",
-    formId: "db9d0cf1-3d6f-405a-9193-11786ba09338",
-    region: "na1",
-    target: "#hs-form-container"
+function validateForm() {
+  let valid = true;
+  const required = document.querySelectorAll('#form-container input[required]');
+
+  required.forEach(input => {
+    const group = input.closest('.field-group');
+    if (!input.value.trim()) {
+      group.classList.add('has-error');
+      valid = false;
+    } else if (input.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
+      group.classList.add('has-error');
+      valid = false;
+    } else {
+      group.classList.remove('has-error');
+    }
   });
+
+  return valid;
+}
+
+function submitSignup() {
+  if (!validateForm()) return;
+
+  const btn = document.getElementById('submitBtn');
+  btn.textContent = 'Redirecting…';
+  btn.disabled = true;
+
+  const email = encodeURIComponent(document.getElementById('email').value.trim());
+  const company = encodeURIComponent(document.getElementById('company').value.trim());
+  const selectedPlan = document.querySelector('input[name="plan"]:checked').value;
+
+  // TODO: Update redirect_url to the final hosted landing page URL once deployed
+  const redirectUrl = encodeURIComponent(window.location.origin + window.location.pathname + '?checkout=success');
+
+  const params = new URLSearchParams(window.location.search);
+  const utmFields = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+
+  let checkoutUrl = 'https://renoworks.chargebee.com/hosted_pages/checkout'
+    + '?subscription_items[item_price_id][0]=' + encodeURIComponent(selectedPlan)
+    + '&customer[email]=' + email
+    + '&customer[company]=' + company
+    + '&redirect_url=' + redirectUrl;
+
+  // Pass UTM params as Chargebee customer custom fields (cf_utm_*)
+  utmFields.forEach(utm => {
+    const val = params.get(utm);
+    if (val) checkoutUrl += '&customer[cf_' + utm + ']=' + encodeURIComponent(val);
+  });
+
+  window.location.href = checkoutUrl;
+}
+
+// Clear field errors on input
+document.querySelectorAll('.field-group input').forEach(input => {
+  input.addEventListener('input', () => {
+    input.closest('.field-group').classList.remove('has-error');
+  });
+});
+
+// Plan toggle
+document.querySelectorAll('.plan-option').forEach(opt => {
+  opt.addEventListener('click', () => {
+    document.querySelectorAll('.plan-option').forEach(o => o.classList.remove('active'));
+    opt.classList.add('active');
+    opt.querySelector('input').checked = true;
+  });
+});
+
+// Allow Enter key to submit
+document.querySelectorAll('#form-container input').forEach(input => {
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      submitSignup();
+    }
+  });
+});
+
+// Show success state if returning from Chargebee checkout
+if (new URLSearchParams(window.location.search).get('checkout') === 'success') {
+  document.getElementById('form-container').style.display = 'none';
+  document.getElementById('signupSuccess').classList.add('active');
+}
 </script>
 
 </body>
