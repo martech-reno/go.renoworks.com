@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5VB2HX');</script>
+  <!-- End Google Tag Manager -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Renoworks Pro — Close More Jobs</title>
@@ -257,12 +264,14 @@
 
     .hero-tag {
       display: inline-flex; align-items: center; gap: 8px;
-      border: 1px solid rgba(255,128,0,.3);
-      border-radius: 100px; padding: 5px 14px;
-      font-family: var(--fh); font-size: 12px; font-weight: 600;
+      border: 1.5px solid rgba(255,128,0,.55);
+      background: rgba(255,128,0,.08);
+      border-radius: 100px; padding: 7px 16px;
+      font-family: var(--fh); font-size: 12px; font-weight: 700;
+      letter-spacing: .02em;
       color: rgba(255,128,0,.9); margin-bottom: 36px;
     }
-    .hero-tag-dot { width: 6px; height: 6px; background: var(--brand); border-radius: 50%; }
+    .hero-tag-dot { width: 8px; height: 8px; background: var(--brand); border-radius: 50%; }
 
     .hero-h1 {
       font-size: clamp(42px, 4.5vw, 72px);
@@ -303,18 +312,17 @@
     /* Stats row */
     .hero-stats {
       display: flex; gap: 0;
-      border-top: 1px solid rgba(0,0,0,.08);
       padding-top: 32px;
       max-width: 100%;
     }
     .hero-stat { flex: 1; }
-    .hero-stat + .hero-stat { border-left: 1px solid rgba(0,0,0,.08); padding-left: 28px; }
+    .hero-stat + .hero-stat { padding-left: 28px; }
     .hs-num {
-      font-family: var(--fh); font-size: 28px; font-weight: 700;
+      font-family: var(--fh); font-size: 34px; font-weight: 700;
       color: var(--ink); letter-spacing: -1px; line-height: 1; margin-bottom: 4px;
     }
     .hs-num span { color: var(--brand); }
-    .hs-lbl { font-size: 12px; color: var(--muted); line-height: 1.4; }
+    .hs-lbl { font-size: 13px; color: var(--muted); line-height: 1.4; }
 
     /* ═══════════════════════════════════════════
        MARQUEE
@@ -946,8 +954,8 @@
 
       /* Stats: single row, centered */
       .hero-stats { justify-content: center; }
-      .hs-num { font-size: 22px; }
-      .hs-lbl { font-size: 11px; }
+      .hs-num { font-size: 26px; }
+      .hs-lbl { font-size: 12px; }
 
       .site-header { padding: 14px 24px; }
       .statement-section { padding: 80px 28px; }
@@ -977,7 +985,7 @@
     /* ── Mobile phones ── */
     @media (max-width: 480px) {
       .hero-content { padding: 100px 20px 20px; }
-      .hero-tag { font-size: 11px; padding: 4px 12px; margin-bottom: 28px; }
+      .hero-tag { font-size: 11px; padding: 5px 13px; margin-bottom: 28px; }
       .hero-h1 { font-size: 38px; margin-bottom: 24px; }
       .hero-sub { font-size: 15px; margin-bottom: 32px; }
       .hero-ctas { flex-direction: column; gap: 10px; margin-bottom: 36px; }
@@ -1002,8 +1010,8 @@
       }
       .hero-stat { text-align: center; }
       .hero-stat + .hero-stat { padding-left: 16px; }
-      .hs-num { font-size: 20px; }
-      .hs-lbl { font-size: 10px; }
+      .hs-num { font-size: 22px; }
+      .hs-lbl { font-size: 11px; }
 
       .site-header { padding: 12px 16px; }
       .hdr-logo img { height: 26px; }
@@ -1050,6 +1058,10 @@
   </style>
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5VB2HX"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
 <!-- ════ STICKY HEADER ════ -->
 <header class="site-header" id="hdr" role="banner">

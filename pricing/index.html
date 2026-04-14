@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5VB2HX');</script>
+  <!-- End Google Tag Manager -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Renoworks Pro — Close More Jobs</title>
@@ -257,12 +264,14 @@
 
     .hero-tag {
       display: inline-flex; align-items: center; gap: 8px;
-      border: 1px solid rgba(255,128,0,.3);
-      border-radius: 100px; padding: 5px 14px;
-      font-family: var(--fh); font-size: 12px; font-weight: 600;
+      border: 1.5px solid rgba(255,128,0,.55);
+      background: rgba(255,128,0,.08);
+      border-radius: 100px; padding: 7px 16px;
+      font-family: var(--fh); font-size: 12px; font-weight: 700;
+      letter-spacing: .02em;
       color: rgba(255,128,0,.9); margin-bottom: 36px;
     }
-    .hero-tag-dot { width: 6px; height: 6px; background: var(--brand); border-radius: 50%; }
+    .hero-tag-dot { width: 8px; height: 8px; background: var(--brand); border-radius: 50%; }
 
     .hero-h1 {
       font-size: clamp(42px, 4.5vw, 72px);
@@ -303,18 +312,17 @@
     /* Stats row */
     .hero-stats {
       display: flex; gap: 0;
-      border-top: 1px solid rgba(0,0,0,.08);
       padding-top: 32px;
       max-width: 100%;
     }
     .hero-stat { flex: 1; }
-    .hero-stat + .hero-stat { border-left: 1px solid rgba(0,0,0,.08); padding-left: 28px; }
+    .hero-stat + .hero-stat { padding-left: 28px; }
     .hs-num {
-      font-family: var(--fh); font-size: 28px; font-weight: 700;
+      font-family: var(--fh); font-size: 34px; font-weight: 700;
       color: var(--ink); letter-spacing: -1px; line-height: 1; margin-bottom: 4px;
     }
     .hs-num span { color: var(--brand); }
-    .hs-lbl { font-size: 12px; color: var(--muted); line-height: 1.4; }
+    .hs-lbl { font-size: 13px; color: var(--muted); line-height: 1.4; }
 
     /* ═══════════════════════════════════════════
        MARQUEE
@@ -573,10 +581,6 @@
       margin-top: 20px;
       max-width: 800px;
     }
-
-    /* ═══════════════════════════════════════════
-       LOGO CAROUSEL
-    ════════════════════════════════════════════ */
     .offer-scope-note {
       font-size: 14px;
       color: var(--body);
@@ -656,6 +660,9 @@
       flex-shrink: 0;
       color: #C15A1A;
     }
+    /* ═══════════════════════════════════════════
+       LOGO CAROUSEL
+    ════════════════════════════════════════════ */
     .logos-section { background: var(--white); padding: 64px 0; overflow: hidden; }
     .logos-label {
       text-align: center; font-family: var(--fh); font-size: 12px;
@@ -803,6 +810,41 @@
 
     .signup-privacy { font-size: 12px; color: var(--muted); margin-top: 14px; text-align: center; }
 
+    /* HubSpot form overrides */
+    .signup-right .hs-form-private { width: 100% !important; }
+    .signup-right .hs-form-private .hs-form-field { margin-bottom: 14px; }
+    .signup-right .hs-form-private label {
+      font-family: var(--fh); font-size: 11px; font-weight: 700;
+      letter-spacing: .5px; text-transform: uppercase; color: var(--muted);
+      display: block; margin-bottom: 7px;
+    }
+    .signup-right .hs-form-private input[type="text"],
+    .signup-right .hs-form-private input[type="email"],
+    .signup-right .hs-form-private input[type="tel"],
+    .signup-right .hs-form-private input[type="number"],
+    .signup-right .hs-form-private select,
+    .signup-right .hs-form-private textarea {
+      width: 100% !important; background: var(--bg-soft); border: 1px solid var(--rule);
+      border-radius: 10px; padding: 13px 16px;
+      font-family: var(--fb); font-size: 15px; color: var(--ink);
+      outline: none; transition: border-color .2s, background .2s; box-sizing: border-box;
+    }
+    .signup-right .hs-form-private input:focus,
+    .signup-right .hs-form-private select:focus,
+    .signup-right .hs-form-private textarea:focus {
+      border-color: var(--brand); background: var(--white);
+    }
+    .signup-right .hs-form-private .hs-button {
+      width: 100%; background: var(--brand); color: var(--white); border: none;
+      border-radius: 100px; padding: 14px 28px;
+      font-family: var(--fh); font-weight: 700; font-size: 15px; cursor: pointer;
+      transition: opacity .18s, transform .15s;
+    }
+    .signup-right .hs-form-private .hs-button:hover { opacity: .86; transform: translateY(-1px); }
+    .signup-right .hs-form-private .hs-error-msgs { list-style: none; margin: 4px 0 0; }
+    .signup-right .hs-form-private .hs-error-msgs li { font-size: 12px; color: #FF6B6B; }
+    .signup-right .hs-form-private fieldset { max-width: none !important; border: none; padding: 0; margin: 0; }
+
     /* ── Plan toggle ── */
     .plan-toggle { display: flex; gap: 10px; }
     .plan-option {
@@ -888,7 +930,6 @@
       .hiw-step { opacity: 1; transform: none; }
     }
 
-    /* ── Tablet portrait ── */
     @media (max-width: 640px) {
       .offer-col-desktop { display: none; }
       .offer-col-mobile { display: inline; }
@@ -899,6 +940,7 @@
       .offer-cell-text { font-size: 12px; max-width: none; }
     }
 
+    /* ── Tablet portrait ── */
     @media (max-width: 768px) {
       .hero-content { padding: 110px 28px 24px; }
       .hero-h1 { font-size: 44px; max-width: none; }
@@ -912,8 +954,8 @@
 
       /* Stats: single row, centered */
       .hero-stats { justify-content: center; }
-      .hs-num { font-size: 22px; }
-      .hs-lbl { font-size: 11px; }
+      .hs-num { font-size: 26px; }
+      .hs-lbl { font-size: 12px; }
 
       .site-header { padding: 14px 24px; }
       .statement-section { padding: 80px 28px; }
@@ -943,7 +985,7 @@
     /* ── Mobile phones ── */
     @media (max-width: 480px) {
       .hero-content { padding: 100px 20px 20px; }
-      .hero-tag { font-size: 11px; padding: 4px 12px; margin-bottom: 28px; }
+      .hero-tag { font-size: 11px; padding: 5px 13px; margin-bottom: 28px; }
       .hero-h1 { font-size: 38px; margin-bottom: 24px; }
       .hero-sub { font-size: 15px; margin-bottom: 32px; }
       .hero-ctas { flex-direction: column; gap: 10px; margin-bottom: 36px; }
@@ -968,8 +1010,8 @@
       }
       .hero-stat { text-align: center; }
       .hero-stat + .hero-stat { padding-left: 16px; }
-      .hs-num { font-size: 20px; }
-      .hs-lbl { font-size: 10px; }
+      .hs-num { font-size: 22px; }
+      .hs-lbl { font-size: 11px; }
 
       .site-header { padding: 12px 16px; }
       .hdr-logo img { height: 26px; }
@@ -1016,6 +1058,10 @@
   </style>
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5VB2HX"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
 <!-- ════ STICKY HEADER ════ -->
 <header class="site-header" id="hdr" role="banner">
@@ -1046,7 +1092,7 @@
 
       <div class="hero-ctas">
         <a href="#signup" class="btn btn-orange btn-lg">Get Started</a>
-        <a href="#pricing" class="btn btn-outline-white">See Pricing</a>
+        <a href="#signup" class="btn btn-outline-white">Contact Sales</a>
       </div>
 
       <div class="hero-stats">
@@ -1228,58 +1274,6 @@
 </section>
 
 
-<!-- ════ PRICING ════ -->
-<section class="price-section" id="pricing" aria-labelledby="price-h">
-  <div class="price-inner">
-    <div class="price-top reveal">
-      <div class="price-left">
-        <span class="eyebrow">Pricing</span>
-        <h2 id="price-h">Simple pricing.<br>No surprises.</h2>
-        <p>Core visualization for your sales process. 4 seats, 40 visualization projects, training, and support included.</p>
-      </div>
-      <div class="price-right">
-        <div class="price-badge">Limited Offer</div>
-        <div class="price-amount-row">
-          <div class="price-main"><sup>$</sup>900<sub>/yr</sub></div>
-          <div class="price-was">$1,788</div>
-        </div>
-        <a href="#signup" class="btn btn-orange btn-lg">Get Started</a>
-        <p class="price-note">Annual billing only.</p>
-      </div>
-    </div>
-
-    <div class="reveal">
-      <div class="price-features">
-        <div class="pf-item">
-          <svg class="pf-check" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="9" r="8"/><path d="M5 9l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span class="pf-text">Use it as part of your estimating/sales process</span>
-        </div>
-        <div class="pf-item">
-          <svg class="pf-check" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="9" r="8"/><path d="M5 9l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span class="pf-text">40 visualization projects</span>
-        </div>
-        <div class="pf-item">
-          <svg class="pf-check" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="9" r="8"/><path d="M5 9l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span class="pf-text">4 seats</span>
-        </div>
-        <div class="pf-item">
-          <svg class="pf-check" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="9" r="8"/><path d="M5 9l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span class="pf-text">Share designs at the click of a button</span>
-        </div>
-        <div class="pf-item">
-          <svg class="pf-check" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="9" r="8"/><path d="M5 9l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span class="pf-text">Training and support</span>
-        </div>
-        <div class="pf-item">
-          <svg class="pf-check" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="9" r="8"/><path d="M5 9l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span class="pf-text">Use it on any device</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
 <!-- ════ LOGO CAROUSEL ════ -->
 <section class="logos-section" aria-label="Brands available in Renoworks Pro">
   <p class="logos-label">350+ brands — including</p>
@@ -1398,78 +1392,42 @@
 </div>
 
 
-<!-- ════ SIGNUP + CHARGEBEE REDIRECT ════ -->
+<!-- ════ CONTACT FORM ════ -->
 <section class="signup-section" id="signup" aria-labelledby="signup-h">
   <div class="signup-inner">
     <div class="signup-left reveal">
       <span class="eyebrow">Get started</span>
-      <h2 id="signup-h">Sign up in minutes.</h2>
-      <p>Get the promotional offer for core visualization: 4 seats, 40 visualization projects, training, and support for $900 per year.</p>
+      <h2 id="signup-h">Talk to our team.</h2>
+      <p>Tell us a bit about your company and goals. We will follow up to walk you through Renoworks Pro and recommend the best plan.</p>
       <div class="signup-trust">
         <div class="ft-item">
           <svg class="ft-check" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Instant access
+          Personalized walkthrough
         </div>
         <div class="ft-item">
           <svg class="ft-check" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Annual plan
+          Plan guidance from our team
         </div>
         <div class="ft-item">
           <svg class="ft-check" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          4 seats included
+          Fast follow-up
         </div>
       </div>
     </div>
 
     <div class="signup-right reveal reveal-d1">
-      <!-- Signup form — single step -->
-      <div id="form-container">
-        <div class="signup-step">
-          <h3>Claim the annual promotional offer</h3>
-          <p class="step-desc">Two fields, then we'll take you to secure annual checkout.</p>
-          <div class="field-group">
-            <label for="email">Work Email</label>
-            <input type="email" id="email" placeholder="john@company.com" required>
-            <div class="field-error">Valid email is required</div>
-          </div>
-          <div class="field-group">
-            <label for="company">Company Name</label>
-            <input type="text" id="company" placeholder="Smith Remodeling" required>
-            <div class="field-error">Company name is required</div>
-          </div>
-          <div style="margin-top: 8px;">
-            <div class="plan-toggle">
-              <label class="plan-option active" data-plan="yearly">
-                <input type="radio" name="plan" value="Renoworks-Pro-Self-Sign-Up-USD-Yearly" checked>
-                <span class="plan-label">Annual promotional offer</span>
-                <span class="plan-price">$900<small>/yr</small></span>
-                <span class="plan-save"><s>$1,788</s> regular price</span>
-              </label>
-            </div>
-          </div>
-          <div class="signup-nav">
-            <button class="btn btn-orange btn-full" id="submitBtn" onclick="submitSignup()">Continue to Checkout</button>
-          </div>
-          <p class="signup-privacy">Secure checkout powered by Chargebee.</p>
-        </div>
-      </div>
-
-      <!-- Success message -->
-      <div class="signup-success" id="signupSuccess">
-        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
-          <circle cx="32" cy="32" r="28"/>
-          <path d="M20 32l8 8 16-16" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <h3>You're all set!</h3>
-        <p>Check your inbox for login details. Your Renoworks Pro account is ready.</p>
+      <div class="signup-step">
+        <h3>Request a demo</h3>
+        <p class="step-desc">Fill out the form and our team will follow up.</p>
+        <div id="hs-form-container"></div>
       </div>
     </div>
   </div>
 </section>
 
 
-<!-- ════ FOOTER ════ -->
-<section class="price-section" aria-labelledby="included-h">
+<!-- ════ PROMO VS STANDARD COMPARE ════ -->
+<section class="price-section" id="offer-compare" aria-labelledby="included-h">
   <div class="price-inner">
     <div class="reveal">
       <div class="price-left" style="margin-bottom: 24px;">
@@ -1605,6 +1563,8 @@
   </div>
 </section>
 
+
+<!-- ════ FOOTER ════ -->
 <footer class="site-footer" role="contentinfo">
   <div class="ftr-logo"><img src="../images/renoworks-logo.png" alt="Renoworks"></div>
   <nav class="ftr-links" aria-label="Footer">
@@ -1714,91 +1674,15 @@ revealEls.forEach(el => revealIO.observe(el));
 })();
 </script>
 
-<!-- Signup form + Chargebee redirect (no Chargebee JS — direct URL) -->
+<!-- HubSpot form -->
+<script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
 <script>
-function validateForm() {
-  let valid = true;
-  const required = document.querySelectorAll('#form-container input[required]');
-
-  required.forEach(input => {
-    const group = input.closest('.field-group');
-    if (!input.value.trim()) {
-      group.classList.add('has-error');
-      valid = false;
-    } else if (input.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
-      group.classList.add('has-error');
-      valid = false;
-    } else {
-      group.classList.remove('has-error');
-    }
+  hbspt.forms.create({
+    portalId: "4255624",
+    formId: "db9d0cf1-3d6f-405a-9193-11786ba09338",
+    region: "na1",
+    target: "#hs-form-container"
   });
-
-  return valid;
-}
-
-function submitSignup() {
-  if (!validateForm()) return;
-
-  const btn = document.getElementById('submitBtn');
-  btn.textContent = 'Redirecting…';
-  btn.disabled = true;
-
-  const email = encodeURIComponent(document.getElementById('email').value.trim());
-  const company = encodeURIComponent(document.getElementById('company').value.trim());
-  const selectedPlan = document.querySelector('input[name="plan"]:checked').value;
-
-  // TODO: Update redirect_url to the final hosted landing page URL once deployed
-  const redirectUrl = encodeURIComponent(window.location.origin + window.location.pathname + '?checkout=success');
-
-  const params = new URLSearchParams(window.location.search);
-  const utmFields = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
-
-  let checkoutUrl = 'https://renoworks.chargebee.com/hosted_pages/checkout'
-    + '?subscription_items[item_price_id][0]=' + encodeURIComponent(selectedPlan)
-    + '&customer[email]=' + email
-    + '&customer[company]=' + company
-    + '&redirect_url=' + redirectUrl;
-
-  // Pass UTM params as Chargebee customer custom fields (cf_utm_*)
-  utmFields.forEach(utm => {
-    const val = params.get(utm);
-    if (val) checkoutUrl += '&customer[cf_' + utm + ']=' + encodeURIComponent(val);
-  });
-
-  window.location.href = checkoutUrl;
-}
-
-// Clear field errors on input
-document.querySelectorAll('.field-group input').forEach(input => {
-  input.addEventListener('input', () => {
-    input.closest('.field-group').classList.remove('has-error');
-  });
-});
-
-// Plan toggle
-document.querySelectorAll('.plan-option').forEach(opt => {
-  opt.addEventListener('click', () => {
-    document.querySelectorAll('.plan-option').forEach(o => o.classList.remove('active'));
-    opt.classList.add('active');
-    opt.querySelector('input').checked = true;
-  });
-});
-
-// Allow Enter key to submit
-document.querySelectorAll('#form-container input').forEach(input => {
-  input.addEventListener('keydown', e => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      submitSignup();
-    }
-  });
-});
-
-// Show success state if returning from Chargebee checkout
-if (new URLSearchParams(window.location.search).get('checkout') === 'success') {
-  document.getElementById('form-container').style.display = 'none';
-  document.getElementById('signupSuccess').classList.add('active');
-}
 </script>
 
 </body>
