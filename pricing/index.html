@@ -1706,7 +1706,7 @@ revealEls.forEach(el => revealIO.observe(el));
   const close   = document.getElementById('lbClose');
 
   function openLb(videoId) {
-    frame.src = 'https://www.youtube-nocookie.com/embed/' + videoId + '?autoplay=1&rel=0';
+    frame.src = 'https://www.youtube-nocookie.com/embed/' + videoId + '?autoplay=1&rel=0&enablejsapi=1';
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
   }

@@ -1652,7 +1652,7 @@ revealEls.forEach(el => revealIO.observe(el));
   const close   = document.getElementById('lbClose');
 
   function openLb(videoId) {
-    frame.src = 'https://www.youtube-nocookie.com/embed/' + videoId + '?autoplay=1&rel=0';
+    frame.src = 'https://www.youtube-nocookie.com/embed/' + videoId + '?autoplay=1&rel=0&enablejsapi=1';
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
@@ -1675,13 +1675,56 @@ revealEls.forEach(el => revealIO.observe(el));
 </script>
 
 <!-- HubSpot form -->
-<script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+<script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
 <script>
   hbspt.forms.create({
-    portalId: "4255624",
-    formId: "db9d0cf1-3d6f-405a-9193-11786ba09338",
     region: "na1",
-    target: "#hs-form-container"
+    portalId: "4255624",
+    formId: "1a8ec152-1204-4532-b040-490c584d6d33",
+    target: "#hs-form-container",
+    onFormReady: function($form) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "hs_form_view",
+        hs_form_id: "1a8ec152-1204-4532-b040-490c584d6d33"
+      });
+    },
+    onFormSubmitted: function() {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "hs_form_submit",
+        hs_form_id: "1a8ec152-1204-4532-b040-490c584d6d33"
+      });
+    }
+  });
+
+  window.addEventListener("message", event => {
+    if (event.data.type === "hsFormCallback" && event.data.eventName === "onFormReady") {
+      const iframe = document.getElementById("hs-form-iframe-0");
+      if (iframe && iframe.contentDocument) {
+        const form = iframe.contentDocument;
+
+        function getCookie(name) {
+          const nameEQ = name + "=";
+          const cookiesArray = document.cookie.split(";");
+          for (let i = 0; i < cookiesArray.length; i++) {
+            const c = cookiesArray[i].trim();
+            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+          }
+          return "";
+        }
+
+        ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"].forEach(key => {
+          const value = getCookie(key);
+          if (value) {
+            const inputField = form.querySelector(`input[name="${key}"]`);
+            if (inputField) {
+              inputField.value = value;
+            }
+          }
+        });
+      }
+    }
   });
 </script>
 
