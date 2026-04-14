@@ -1361,7 +1361,7 @@
             </div>
           </div>
         </div>
-        <div class="vq-video" data-video="yL_xyyl52po" role="button" aria-label="Watch Tim Eansor video testimonial" tabindex="0">
+        <div class="vq-video" data-video="yL_xyyl52po" data-video-title="Tim Eansor Testimonial" role="button" aria-label="Watch Tim Eansor video testimonial" tabindex="0">
           <img src="https://img.youtube.com/vi/yL_xyyl52po/maxresdefault.jpg" alt="Tim Eansor testimonial video thumbnail" loading="lazy">
           <div class="vq-play">
             <div class="vq-play-btn">
@@ -1389,7 +1389,7 @@
             </div>
           </div>
         </div>
-        <div class="vq-video" data-video="oxpbJTN06Zc" role="button" aria-label="Watch Serge Bauer video testimonial" tabindex="0">
+        <div class="vq-video" data-video="oxpbJTN06Zc" data-video-title="Serge Bauer Testimonial" role="button" aria-label="Watch Serge Bauer video testimonial" tabindex="0">
           <img src="https://img.youtube.com/vi/oxpbJTN06Zc/maxresdefault.jpg" alt="Serge Bauer testimonial video thumbnail" loading="lazy">
           <div class="vq-play">
             <div class="vq-play-btn">
@@ -1726,7 +1726,7 @@ revealEls.forEach(el => revealIO.observe(el));
   }
 
   document.querySelectorAll('.vq-video').forEach(el => {
-    const videoLabel = el.getAttribute('aria-label') || '';
+    const videoLabel = el.dataset.videoTitle || el.getAttribute('aria-label') || '';
     el.addEventListener('click', () => openLb(el.dataset.video, videoLabel));
     el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openLb(el.dataset.video, videoLabel); });
   });
@@ -1759,7 +1759,7 @@ function validateForm() {
   return valid;
 }
 
-function submitSignup() {
+function legacySubmitSignup() {
   if (!validateForm()) return;
 
   const btn = document.getElementById('submitBtn');
@@ -1787,6 +1787,108 @@ function submitSignup() {
     const val = params.get(utm);
     if (val) checkoutUrl += '&customer[cf_' + utm + ']=' + encodeURIComponent(val);
   });
+
+  window.location.href = checkoutUrl;
+}
+
+function getCookie(name) {
+  const nameEQ = name + '=';
+  const cookiesArray = document.cookie.split(';');
+  for (let i = 0; i < cookiesArray.length; i++) {
+    const c = cookiesArray[i].trim();
+    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+  }
+  return '';
+}
+
+function createSubmissionId() {
+  if (window.crypto && window.crypto.randomUUID) {
+    return window.crypto.randomUUID();
+  }
+  return 'pricing-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10);
+}
+
+async function submitSignup() {
+  if (!validateForm()) return;
+
+  const btn = document.getElementById('submitBtn');
+  btn.textContent = 'Redirecting...';
+  btn.disabled = true;
+
+  const rawEmail = document.getElementById('email').value.trim();
+  const rawCompany = document.getElementById('company').value.trim();
+  const email = encodeURIComponent(rawEmail);
+  const company = encodeURIComponent(rawCompany);
+  const selectedPlan = document.querySelector('input[name="plan"]:checked').value;
+  const submissionId = createSubmissionId();
+  const redirectUrl = encodeURIComponent(window.location.origin + window.location.pathname + '?checkout=success');
+
+  const params = new URLSearchParams(window.location.search);
+  const utmFields = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+  const utmValues = {};
+
+  utmFields.forEach(utm => {
+    utmValues[utm] = params.get(utm) || getCookie(utm) || '';
+  });
+
+  let checkoutUrl = 'https://renoworks.chargebee.com/hosted_pages/checkout'
+    + '?subscription_items[item_price_id][0]=' + encodeURIComponent(selectedPlan)
+    + '&customer[email]=' + email
+    + '&customer[company]=' + company
+    + '&redirect_url=' + redirectUrl;
+
+  utmFields.forEach(utm => {
+    const val = utmValues[utm];
+    if (val) checkoutUrl += '&customer[cf_' + utm + ']=' + encodeURIComponent(val);
+  });
+
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'pricing_checkout_intent',
+    submission_id: submissionId,
+    plan_id: selectedPlan,
+    landing_page_variant: 'v6b',
+    page_path: window.location.pathname,
+    has_email: !!rawEmail,
+    has_company: !!rawCompany,
+    utm_source: utmValues.utm_source,
+    utm_medium: utmValues.utm_medium,
+    utm_campaign: utmValues.utm_campaign,
+    utm_content: utmValues.utm_content,
+    utm_term: utmValues.utm_term
+  });
+
+  const zapierPayload = {
+    submission_id: submissionId,
+    event_name: 'pricing_checkout_intent',
+    landing_page_variant: 'v6b',
+    page_url: window.location.href,
+    page_path: window.location.pathname,
+    email: rawEmail,
+    company: rawCompany,
+    plan_id: selectedPlan,
+    timestamp: new Date().toISOString(),
+    utm_source: utmValues.utm_source,
+    utm_medium: utmValues.utm_medium,
+    utm_campaign: utmValues.utm_campaign,
+    utm_content: utmValues.utm_content,
+    utm_term: utmValues.utm_term
+  };
+
+  try {
+    await Promise.race([
+      fetch('https://hooks.zapier.com/hooks/catch/21071959/u7vjy49/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(zapierPayload)
+      }),
+      new Promise(resolve => setTimeout(resolve, 800))
+    ]);
+  } catch (err) {
+    console.warn('Zapier webhook failed before Chargebee redirect.', err);
+  }
 
   window.location.href = checkoutUrl;
 }
