@@ -1651,7 +1651,15 @@ revealEls.forEach(el => revealIO.observe(el));
   const frame   = document.getElementById('lbFrame');
   const close   = document.getElementById('lbClose');
 
-  function openLb(videoId) {
+  function openLb(videoId, videoLabel) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'youtube_video_play',
+      video_id: videoId,
+      video_label: videoLabel || '',
+      landing_page_variant: 'v6a'
+    });
+
     frame.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0&enablejsapi=1&origin=' + encodeURIComponent(window.location.origin);
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -1664,8 +1672,9 @@ revealEls.forEach(el => revealIO.observe(el));
   }
 
   document.querySelectorAll('.vq-video').forEach(el => {
-    el.addEventListener('click', () => openLb(el.dataset.video));
-    el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openLb(el.dataset.video); });
+    const videoLabel = el.getAttribute('aria-label') || '';
+    el.addEventListener('click', () => openLb(el.dataset.video, videoLabel));
+    el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openLb(el.dataset.video, videoLabel); });
   });
 
   close.addEventListener('click', closeLb);
@@ -1683,11 +1692,6 @@ revealEls.forEach(el => revealIO.observe(el));
     formId: "1a8ec152-1204-4532-b040-490c584d6d33",
     target: "#hs-form-container",
     onFormReady: function($form) {
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
-        event: "hs_form_view",
-        hs_form_id: "1a8ec152-1204-4532-b040-490c584d6d33"
-      });
     },
     onFormSubmitted: function() {
       window.dataLayer = window.dataLayer || [];
