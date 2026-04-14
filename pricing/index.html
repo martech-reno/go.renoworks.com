@@ -1875,17 +1875,21 @@ async function submitSignup() {
     utm_term: utmValues.utm_term
   };
 
+  const zapierWebhookUrl = '';
+
   try {
-    await Promise.race([
-      fetch('https://hooks.zapier.com/hooks/catch/21071959/u7vjy49/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(zapierPayload)
-      }),
-      new Promise(resolve => setTimeout(resolve, 800))
-    ]);
+    if (zapierWebhookUrl) {
+      await Promise.race([
+        fetch(zapierWebhookUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(zapierPayload)
+        }),
+        new Promise(resolve => setTimeout(resolve, 800))
+      ]);
+    }
   } catch (err) {
     console.warn('Zapier webhook failed before Chargebee redirect.', err);
   }
