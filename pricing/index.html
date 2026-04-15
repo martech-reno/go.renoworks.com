@@ -1875,12 +1875,12 @@ async function submitSignup() {
     utm_term: utmValues.utm_term
   };
 
-  const zapierWebhookUrl = '';
+  const leadCaptureUrl = 'https://renoworks-api.vercel.app/api/pricing-intent';
 
   try {
-    if (zapierWebhookUrl) {
+    if (leadCaptureUrl) {
       await Promise.race([
-        fetch(zapierWebhookUrl, {
+        fetch(leadCaptureUrl, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
