@@ -1821,7 +1821,6 @@ async function submitSignup() {
   const company = encodeURIComponent(rawCompany);
   const selectedPlan = document.querySelector('input[name="plan"]:checked').value;
   const submissionId = createSubmissionId();
-  const redirectUrl = encodeURIComponent(window.location.origin + window.location.pathname + '?checkout=success');
 
   const params = new URLSearchParams(window.location.search);
   const utmFields = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
@@ -1830,6 +1829,19 @@ async function submitSignup() {
   utmFields.forEach(utm => {
     utmValues[utm] = params.get(utm) || getCookie(utm) || '';
   });
+
+  const returnUrl = new URL('./thank-you/', window.location.href);
+  returnUrl.searchParams.set('checkout', 'success');
+  returnUrl.searchParams.set('plan_id', selectedPlan);
+  returnUrl.searchParams.set('submission_id', submissionId);
+  returnUrl.searchParams.set('landing_page_variant', 'v6b');
+
+  utmFields.forEach(utm => {
+    const val = utmValues[utm];
+    if (val) returnUrl.searchParams.set(utm, val);
+  });
+
+  const redirectUrl = encodeURIComponent(returnUrl.toString());
 
   let checkoutUrl = 'https://renoworks.chargebee.com/hosted_pages/checkout'
     + '?subscription_items[item_price_id][0]=' + encodeURIComponent(selectedPlan)
@@ -1927,6 +1939,12 @@ document.querySelectorAll('#form-container input').forEach(input => {
 if (new URLSearchParams(window.location.search).get('checkout') === 'success') {
   document.getElementById('form-container').style.display = 'none';
   document.getElementById('signupSuccess').classList.add('active');
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'pricing_checkout_success',
+    landing_page_variant: 'v6b',
+    page_path: window.location.pathname
+  });
 }
 </script>
 
