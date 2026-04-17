@@ -1830,7 +1830,9 @@ async function submitSignup() {
     utmValues[utm] = params.get(utm) || getCookie(utm) || '';
   });
 
-  const returnUrl = new URL('./thank-you/', window.location.href);
+  let basePath = window.location.pathname;
+  if (!basePath.endsWith('/')) basePath += '/';
+  const returnUrl = new URL(basePath + 'thank-you/', window.location.origin);
   returnUrl.searchParams.set('checkout', 'success');
   returnUrl.searchParams.set('plan_id', selectedPlan);
   returnUrl.searchParams.set('submission_id', submissionId);
