@@ -1440,7 +1440,7 @@
       <div id="form-container">
         <div class="signup-step">
           <h3>Claim the annual promotional offer</h3>
-          <p class="step-desc">Two fields, then we'll take you to secure annual checkout.</p>
+          <p class="step-desc">Quick details, then we'll take you to secure annual checkout.</p>
           <div class="field-group">
             <label for="email">Work Email</label>
             <input type="email" id="email" placeholder="john@company.com" required>
@@ -1450,6 +1450,10 @@
             <label for="company">Company Name</label>
             <input type="text" id="company" placeholder="Smith Remodeling" required>
             <div class="field-error">Company name is required</div>
+          </div>
+          <div class="field-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="(555) 123-4567">
           </div>
           <div style="margin-top: 8px;">
             <div class="plan-toggle">
@@ -1817,8 +1821,7 @@ async function submitSignup() {
 
   const rawEmail = document.getElementById('email').value.trim();
   const rawCompany = document.getElementById('company').value.trim();
-  const email = encodeURIComponent(rawEmail);
-  const company = encodeURIComponent(rawCompany);
+  const rawPhone = document.getElementById('phone').value.trim();
   const selectedPlan = document.querySelector('input[name="plan"]:checked').value;
   const submissionId = createSubmissionId();
 
@@ -1830,31 +1833,7 @@ async function submitSignup() {
     utmValues[utm] = params.get(utm) || getCookie(utm) || '';
   });
 
-  let basePath = window.location.pathname;
-  if (!basePath.endsWith('/')) basePath += '/';
-  const returnUrl = new URL(basePath + 'thank-you/', window.location.origin);
-  returnUrl.searchParams.set('checkout', 'success');
-  returnUrl.searchParams.set('plan_id', selectedPlan);
-  returnUrl.searchParams.set('submission_id', submissionId);
-  returnUrl.searchParams.set('landing_page_variant', 'v6b');
-
-  utmFields.forEach(utm => {
-    const val = utmValues[utm];
-    if (val) returnUrl.searchParams.set(utm, val);
-  });
-
-  const redirectUrl = encodeURIComponent(returnUrl.toString());
-
-  let checkoutUrl = 'https://renoworks.chargebee.com/hosted_pages/checkout'
-    + '?subscription_items[item_price_id][0]=' + encodeURIComponent(selectedPlan)
-    + '&customer[email]=' + email
-    + '&customer[company]=' + company
-    + '&redirect_url=' + redirectUrl;
-
-  utmFields.forEach(utm => {
-    const val = utmValues[utm];
-    if (val) checkoutUrl += '&customer[cf_' + utm + ']=' + encodeURIComponent(val);
-  });
+  const thankYouUrl = new URL('./thank-you/', window.location.href).toString();
 
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({
@@ -1865,6 +1844,7 @@ async function submitSignup() {
     page_path: window.location.pathname,
     has_email: !!rawEmail,
     has_company: !!rawCompany,
+    has_phone: !!rawPhone,
     utm_source: utmValues.utm_source,
     utm_medium: utmValues.utm_medium,
     utm_campaign: utmValues.utm_campaign,
@@ -1872,15 +1852,18 @@ async function submitSignup() {
     utm_term: utmValues.utm_term
   });
 
-  const zapierPayload = {
+  const checkoutApiUrl = 'https://renoworks-api.vercel.app/api/create-checkout';
+
+  const requestPayload = {
     submission_id: submissionId,
-    event_name: 'pricing_checkout_intent',
     landing_page_variant: 'v6b',
     page_url: window.location.href,
     page_path: window.location.pathname,
     email: rawEmail,
     company: rawCompany,
+    phone: rawPhone,
     plan_id: selectedPlan,
+    thank_you_url: thankYouUrl,
     timestamp: new Date().toISOString(),
     utm_source: utmValues.utm_source,
     utm_medium: utmValues.utm_medium,
@@ -1889,26 +1872,34 @@ async function submitSignup() {
     utm_term: utmValues.utm_term
   };
 
-  const leadCaptureUrl = 'https://renoworks-api.vercel.app/api/pricing-intent';
-
   try {
-    if (leadCaptureUrl) {
-      await Promise.race([
-        fetch(leadCaptureUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(zapierPayload)
-        }),
-        new Promise(resolve => setTimeout(resolve, 800))
-      ]);
-    }
-  } catch (err) {
-    console.warn('Zapier webhook failed before Chargebee redirect.', err);
-  }
+    const response = await fetch(checkoutApiUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(requestPayload)
+    });
 
-  window.location.href = checkoutUrl;
+    const data = await response.json();
+
+    if (!response.ok || !data.ok || !data.checkout_url) {
+      throw new Error(data && data.error ? data.error : 'Checkout creation failed');
+    }
+
+    window.location.href = data.checkout_url;
+  } catch (err) {
+    console.error('Failed to create Chargebee checkout.', err);
+    btn.textContent = 'Continue to Checkout';
+    btn.disabled = false;
+    const formContainer = document.getElementById('form-container');
+    let errEl = document.getElementById('signupError');
+    if (!errEl) {
+      errEl = document.createElement('div');
+      errEl.id = 'signupError';
+      errEl.style.cssText = 'color:#b91c1c;margin-top:12px;font-size:14px;';
+      formContainer.appendChild(errEl);
+    }
+    errEl.textContent = 'Something went wrong. Please try again or contact us.';
+  }
 }
 
 // Clear field errors on input
