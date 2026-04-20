@@ -1919,12 +1919,7 @@ async function submitSignup() {
       sessionStorage.setItem('rw_checkout', JSON.stringify({
         submission_id: submissionId,
         plan_id: selectedPlan,
-        landing_page_variant: 'v6b',
-        utm_source: utmValues.utm_source,
-        utm_medium: utmValues.utm_medium,
-        utm_campaign: utmValues.utm_campaign,
-        utm_content: utmValues.utm_content,
-        utm_term: utmValues.utm_term
+        landing_page_variant: 'v6b'
       }));
     } catch (e) {}
 
