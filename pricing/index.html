@@ -799,6 +799,24 @@
     .field-group.has-error select { border-color: #FF6B6B; }
     .field-group.has-error .field-error { display: block; }
 
+    .phone-wrapper {
+      display: flex; align-items: stretch;
+      background: var(--bg-soft); border: 1px solid var(--rule);
+      border-radius: 10px; transition: border-color .2s, background .2s;
+    }
+    .phone-wrapper:focus-within { border-color: var(--brand); background: var(--white); }
+    .phone-prefix {
+      display: flex; align-items: center; padding: 0 12px;
+      font-family: var(--fb); font-size: 15px; color: var(--muted);
+      border-right: 1px solid var(--rule); user-select: none; flex-shrink: 0;
+    }
+    .phone-wrapper input {
+      border: none !important; background: transparent !important;
+      border-radius: 0 10px 10px 0 !important; flex: 1; min-width: 0;
+    }
+    .phone-wrapper input:focus { box-shadow: none; }
+    .has-error .phone-wrapper { border-color: #FF6B6B; }
+
     .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
     .signup-nav { display: flex; gap: 12px; margin-top: 24px; }
@@ -1453,7 +1471,11 @@
           </div>
           <div class="field-group">
             <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" placeholder="(555) 123-4567">
+            <div class="phone-wrapper">
+              <span class="phone-prefix">+1</span>
+              <input type="tel" id="phone" placeholder="(555) 123-4567">
+            </div>
+            <div class="field-error">Enter a valid 10-digit US phone number</div>
           </div>
           <div style="margin-top: 8px;">
             <div class="plan-toggle">
@@ -1760,6 +1782,16 @@ function validateForm() {
     }
   });
 
+  const phoneInput = document.getElementById('phone');
+  const phoneGroup = phoneInput.closest('.field-group');
+  const phoneDigits = phoneInput.value.replace(/\D/g, '');
+  if (phoneDigits.length > 0 && phoneDigits.length !== 10) {
+    phoneGroup.classList.add('has-error');
+    valid = false;
+  } else {
+    phoneGroup.classList.remove('has-error');
+  }
+
   return valid;
 }
 
@@ -1821,7 +1853,8 @@ async function submitSignup() {
 
   const rawEmail = document.getElementById('email').value.trim();
   const rawCompany = document.getElementById('company').value.trim();
-  const rawPhone = document.getElementById('phone').value.trim();
+  const phoneDigits = document.getElementById('phone').value.replace(/\D/g, '');
+  const rawPhone = phoneDigits ? '+1' + phoneDigits : '';
   const selectedPlan = document.querySelector('input[name="plan"]:checked').value;
   const submissionId = createSubmissionId();
 
