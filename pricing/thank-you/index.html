@@ -22,6 +22,8 @@
         } catch (e) {}
       }
 
+      function p(key) { return params.get(key) || ctx[key] || ''; }
+
       window.dataLayer = window.dataLayer || [];
       if (isSuccess && !alreadyFired) {
         window.dataLayer.push({
@@ -32,11 +34,11 @@
           submission_id: ctx.submission_id || '',
           landing_page_variant: ctx.landing_page_variant || 'v6b',
           plan_id: ctx.plan_id || '',
-          utm_source: params.get('utm_source') || '',
-          utm_medium: params.get('utm_medium') || '',
-          utm_campaign: params.get('utm_campaign') || '',
-          utm_content: params.get('utm_content') || '',
-          utm_term: params.get('utm_term') || '',
+          utm_source: p('utm_source'),
+          utm_medium: p('utm_medium'),
+          utm_campaign: p('utm_campaign'),
+          utm_content: p('utm_content'),
+          utm_term: p('utm_term'),
           page_path: window.location.pathname
         });
       }
