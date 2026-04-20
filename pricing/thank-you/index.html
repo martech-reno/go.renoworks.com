@@ -4,11 +4,13 @@
   <script>
     (function () {
       const params = new URLSearchParams(window.location.search);
-      const checkoutStatus = params.get('checkout') || '';
+      const isSuccess = params.get('state') === 'succeeded' || params.get('checkout') === 'success';
 
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
-        event: checkoutStatus === 'success' ? 'pricing_checkout_success' : 'pricing_thank_you_view',
+        event: isSuccess ? 'pricing_checkout_success' : 'pricing_thank_you_view',
+        chargebee_hosted_page_id: params.get('id') || '',
+        chargebee_state: params.get('state') || '',
         landing_page_variant: params.get('landing_page_variant') || 'v6b',
         plan_id: params.get('plan_id') || '',
         submission_id: params.get('submission_id') || '',
