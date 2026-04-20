@@ -1866,8 +1866,6 @@ async function submitSignup() {
     utmValues[utm] = params.get(utm) || getCookie(utm) || '';
   });
 
-  const thankYouUrl = new URL('./thank-you/', window.location.href).toString();
-
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({
     event: 'pricing_checkout_intent',
@@ -1896,7 +1894,6 @@ async function submitSignup() {
     company: rawCompany,
     phone: rawPhone,
     plan_id: selectedPlan,
-    thank_you_url: thankYouUrl,
     timestamp: new Date().toISOString(),
     utm_source: utmValues.utm_source,
     utm_medium: utmValues.utm_medium,
@@ -1917,6 +1914,19 @@ async function submitSignup() {
     if (!response.ok || !data.ok || !data.checkout_url) {
       throw new Error(data && data.error ? data.error : 'Checkout creation failed');
     }
+
+    try {
+      sessionStorage.setItem('rw_checkout', JSON.stringify({
+        submission_id: submissionId,
+        plan_id: selectedPlan,
+        landing_page_variant: 'v6b',
+        utm_source: utmValues.utm_source,
+        utm_medium: utmValues.utm_medium,
+        utm_campaign: utmValues.utm_campaign,
+        utm_content: utmValues.utm_content,
+        utm_term: utmValues.utm_term
+      }));
+    } catch (e) {}
 
     window.location.href = data.checkout_url;
   } catch (err) {

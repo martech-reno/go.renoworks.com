@@ -3,22 +3,31 @@
 <head>
   <script>
     (function () {
-      const params = new URLSearchParams(window.location.search);
-      const isSuccess = params.get('state') === 'succeeded' || params.get('checkout') === 'success';
+      var params = new URLSearchParams(window.location.search);
+      var isSuccess = params.get('state') === 'succeeded';
+
+      var ctx = {};
+      try {
+        var raw = sessionStorage.getItem('rw_checkout');
+        if (raw) {
+          ctx = JSON.parse(raw);
+          sessionStorage.removeItem('rw_checkout');
+        }
+      } catch (e) {}
 
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         event: isSuccess ? 'pricing_checkout_success' : 'pricing_thank_you_view',
         chargebee_hosted_page_id: params.get('id') || '',
         chargebee_state: params.get('state') || '',
-        landing_page_variant: params.get('landing_page_variant') || 'v6b',
-        plan_id: params.get('plan_id') || '',
-        submission_id: params.get('submission_id') || '',
-        utm_source: params.get('utm_source') || '',
-        utm_medium: params.get('utm_medium') || '',
-        utm_campaign: params.get('utm_campaign') || '',
-        utm_content: params.get('utm_content') || '',
-        utm_term: params.get('utm_term') || '',
+        landing_page_variant: ctx.landing_page_variant || 'v6b',
+        plan_id: ctx.plan_id || '',
+        submission_id: ctx.submission_id || '',
+        utm_source: ctx.utm_source || '',
+        utm_medium: ctx.utm_medium || '',
+        utm_campaign: ctx.utm_campaign || '',
+        utm_content: ctx.utm_content || '',
+        utm_term: ctx.utm_term || '',
         page_path: window.location.pathname
       });
     })();
@@ -312,13 +321,17 @@
 
   <script>
     (function () {
-      const params = new URLSearchParams(window.location.search);
+      var ctx = {};
+      try {
+        var raw = sessionStorage.getItem('rw_checkout');
+        if (raw) ctx = JSON.parse(raw);
+      } catch (e) {}
       const metaPills = document.getElementById('metaPills');
       const items = [
-        ['Plan', params.get('plan_id')],
-        ['Submission', params.get('submission_id')],
-        ['Source', params.get('utm_source')],
-        ['Campaign', params.get('utm_campaign')]
+        ['Plan', ctx.plan_id],
+        ['Submission', ctx.submission_id],
+        ['Source', ctx.utm_source],
+        ['Campaign', ctx.utm_campaign]
       ].filter(([, value]) => value);
 
       items.forEach(([label, value]) => {
