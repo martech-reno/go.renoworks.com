@@ -1092,7 +1092,7 @@
 
       <div class="hero-ctas">
         <a href="#signup" class="btn btn-orange btn-lg">Get Started</a>
-        <a href="#signup" class="btn btn-outline-white">Contact Sales</a>
+        <button type="button" class="btn btn-outline-white btn-lg" data-video="DBRvQarCBxU" data-video-title="Renoworks Pro Demo Walkthrough" aria-label="Play video: Renoworks Pro Demo Walkthrough">Watch Demo</button>
       </div>
 
       <div class="hero-stats">
@@ -1341,7 +1341,7 @@
             </div>
           </div>
         </div>
-        <div class="vq-video" data-video="yL_xyyl52po" data-video-title="Tim Eansor Testimonial" role="button" aria-label="Watch Tim Eansor video testimonial" tabindex="0">
+        <div class="vq-video" data-video="yL_xyyl52po" data-video-title="Tim Eansor Sees His Contractor Close Rate Double | Renoworks Testimonial" role="button" aria-label="Play video: Tim Eansor Sees His Contractor Close Rate Double | Renoworks Testimonial" title="Tim Eansor Sees His Contractor Close Rate Double | Renoworks Testimonial" tabindex="0">
           <img src="https://img.youtube.com/vi/yL_xyyl52po/maxresdefault.jpg" alt="Tim Eansor testimonial video thumbnail" loading="lazy">
           <div class="vq-play">
             <div class="vq-play-btn">
@@ -1369,7 +1369,7 @@
             </div>
           </div>
         </div>
-        <div class="vq-video" data-video="oxpbJTN06Zc" data-video-title="Serge Bauer Testimonial" role="button" aria-label="Watch Serge Bauer video testimonial" tabindex="0">
+        <div class="vq-video" data-video="oxpbJTN06Zc" data-video-title="How QBEX Wins More Renovation Jobs with Visualization | Renoworks Testimonial" role="button" aria-label="Play video: How QBEX Wins More Renovation Jobs with Visualization | Renoworks Testimonial" title="How QBEX Wins More Renovation Jobs with Visualization | Renoworks Testimonial" tabindex="0">
           <img src="https://img.youtube.com/vi/oxpbJTN06Zc/maxresdefault.jpg" alt="Serge Bauer testimonial video thumbnail" loading="lazy">
           <div class="vq-play">
             <div class="vq-play-btn">
@@ -1384,7 +1384,7 @@
 </section>
 
 <!-- ════ LIGHTBOX ════ -->
-<div class="lb-overlay" id="lbOverlay" role="dialog" aria-modal="true" aria-label="Video testimonial">
+<div class="lb-overlay" id="lbOverlay" role="dialog" aria-modal="true" aria-label="Video player">
   <div class="lb-box" id="lbBox">
     <button class="lb-close" id="lbClose" aria-label="Close video">&times;</button>
     <iframe id="lbFrame" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -1671,10 +1671,16 @@ revealEls.forEach(el => revealIO.observe(el));
     document.body.style.overflow = '';
   }
 
-  document.querySelectorAll('.vq-video').forEach(el => {
-    const videoLabel = el.dataset.videoTitle || el.getAttribute('aria-label') || '';
-    el.addEventListener('click', () => openLb(el.dataset.video, videoLabel));
-    el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openLb(el.dataset.video, videoLabel); });
+  document.querySelectorAll('[data-video]').forEach(el => {
+    const videoLabel = (el.dataset.videoTitle || el.getAttribute('title') || el.getAttribute('aria-label') || '').trim();
+    const openVideo = () => openLb(el.dataset.video, videoLabel);
+    el.addEventListener('click', e => {
+      if (el.tagName === 'A') e.preventDefault();
+      openVideo();
+    });
+    if (el.classList.contains('vq-video')) {
+      el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openVideo(); });
+    }
   });
 
   close.addEventListener('click', closeLb);
