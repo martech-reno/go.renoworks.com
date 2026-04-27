@@ -11,7 +11,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Renoworks Pro — Close More Jobs</title>
-  <meta name="description" content="Show clients exactly what their home will look like. Renoworks Pro helps contractors win more jobs through real-time visualization.">
+  <meta name="description" content="Help homeowners decide faster with Renoworks Pro. Show real products on the home, build trust through visualization, and keep more projects moving.">
   <meta name="robots" content="noindex, nofollow">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -97,13 +97,12 @@
        HERO — SPLIT WITH CSS DEVICE MOCKUPS
     ════════════════════════════════════════════ */
     .hero {
-      min-height: 100vh;
       position: relative;
       overflow: hidden;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      background: var(--white);
+      background:
+        radial-gradient(circle at top right, rgba(255,175,55,.20), transparent 32%),
+        radial-gradient(circle at bottom left, rgba(255,128,0,.12), transparent 28%),
+        linear-gradient(180deg, #FFF7EF 0%, var(--white) 46%, var(--bg-soft) 100%);
     }
     .hero::before {
       content: '';
@@ -324,6 +323,510 @@
     .hs-num span { color: var(--brand); }
     .hs-lbl { font-size: 13px; color: var(--muted); line-height: 1.4; }
 
+    .hero-shell {
+      position: relative;
+      z-index: 1;
+      max-width: 1440px;
+      margin: 0 auto;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(0, .92fr) minmax(0, 1.18fr);
+      align-items: center;
+      gap: clamp(40px, 4vw, 72px);
+      padding: 108px 56px 72px;
+    }
+    .hero-copy {
+      max-width: 590px;
+    }
+    .hero-content.hero-copy {
+      padding: 0;
+      z-index: 1;
+    }
+    .hero-content.hero-copy .hero-inner {
+      max-width: none;
+    }
+    .hero-copy-main,
+    .hero-copy-secondary {
+      display: block;
+    }
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 16px;
+      border: 1px solid rgba(255,128,0,.24);
+      border-radius: 999px;
+      background: rgba(255,255,255,.84);
+      box-shadow: 0 16px 40px rgba(26,27,30,.06);
+      font-family: var(--fh);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--brand);
+      margin-bottom: 26px;
+      font-size: 0;
+    }
+    .hero-pill::after {
+      content: 'Visualization Built For Contractors';
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .hero-pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--brand), var(--amber));
+      box-shadow: 0 0 0 6px rgba(255,128,0,.12);
+    }
+    .hero-h1 {
+      font-size: clamp(44px, 5vw, 72px);
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      line-height: .95;
+      color: var(--ink);
+      margin-bottom: 24px;
+      text-wrap: balance;
+    }
+    .hero-h1 strong {
+      color: var(--brand);
+      font-weight: 700;
+    }
+    .hero-sub {
+      max-width: 520px;
+      font-size: clamp(17px, 1.5vw, 20px);
+      line-height: 1.65;
+      color: var(--body);
+      margin-bottom: 30px;
+    }
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .hero-ctas .btn-lg {
+      padding-inline: 30px;
+    }
+    .hero-trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .hero-proof {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 11px 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(26,27,30,.08);
+      background: rgba(255,255,255,.82);
+      box-shadow: 0 10px 28px rgba(26,27,30,.06);
+      font-size: 13px;
+      line-height: 1.35;
+      color: var(--body);
+    }
+    .hero-proof strong {
+      color: var(--ink);
+      font-family: var(--fh);
+      font-size: 14px;
+    }
+    .hero-proof-mark {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: rgba(255,128,0,.12);
+      color: var(--brand);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .hero-proof-mark svg {
+      width: 14px;
+      height: 14px;
+    }
+    .hero-scene-wrap {
+      position: relative;
+      padding: 38px 18px 18px;
+    }
+    .hero-devices.hero-scene-wrap {
+      height: auto;
+      min-height: 0;
+      overflow: visible;
+      display: block;
+    }
+    .hero-devices.hero-scene-wrap::after {
+      display: none;
+    }
+    .hero-devices.hero-scene-wrap .hero-devices-scene {
+      width: 100%;
+      height: auto;
+      min-height: 0;
+      max-width: 780px;
+      margin-left: auto;
+    }
+    .hero-scene-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 12% 8% 6%;
+      border-radius: 36px;
+      background: radial-gradient(circle at center, rgba(255,128,0,.12), rgba(255,128,0,0));
+      filter: blur(12px);
+      pointer-events: none;
+    }
+    .hero-float-chip {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 3;
+      width: min(220px, 42%);
+      padding: 16px 16px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(26,27,30,.08);
+      background: rgba(255,255,255,.94);
+      box-shadow: 0 24px 52px rgba(26,27,30,.12);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .hero-chip-label {
+      margin-bottom: 12px;
+      font-family: var(--fh);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .hero-chip-list {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+    .hero-chip-item {
+      display: grid;
+      grid-template-columns: 20px minmax(0, 1fr) 18px;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--body);
+    }
+    .hero-chip-swatch {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      border: 1px solid rgba(26,27,30,.08);
+    }
+    .hero-chip-check {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,128,0,.12);
+      color: var(--brand);
+    }
+    .hero-chip-check svg {
+      width: 10px;
+      height: 10px;
+    }
+    .hero-frame {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 26px;
+      border: 1px solid rgba(26,27,30,.10);
+      background: rgba(255,255,255,.96);
+      box-shadow:
+        0 1px 0 rgba(255,255,255,.85) inset,
+        0 40px 80px rgba(26,27,30,.14),
+        0 18px 34px rgba(26,27,30,.08);
+      transform: perspective(1500px) rotateY(-8deg) rotateX(2.5deg);
+      transform-origin: center;
+    }
+    .hero-frame-topbar {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-height: 46px;
+      padding: 0 18px;
+      background: #2E3035;
+      border-bottom: 1px solid rgba(0,0,0,.22);
+    }
+    .hero-frame-logo img {
+      width: auto;
+      height: 18px;
+      filter: brightness(0) invert(1);
+    }
+    .hero-frame-links {
+      display: flex;
+      gap: 14px;
+      margin-left: auto;
+      font-family: var(--fh);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.42);
+    }
+    .hero-frame-mode {
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,128,0,.28);
+      background: rgba(255,128,0,.12);
+      color: var(--amber);
+      font-family: var(--fh);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .hero-frame-subbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 36px;
+      padding: 0 16px;
+      background: #3A3D43;
+      border-bottom: 1px solid rgba(0,0,0,.14);
+    }
+    .hero-frame-breadcrumb {
+      font-size: 11px;
+      color: rgba(255,255,255,.48);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .hero-frame-tabs {
+      display: inline-flex;
+      gap: 4px;
+    }
+    .hero-frame-tab {
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 0;
+      background: transparent;
+      color: rgba(255,255,255,.48);
+      font-family: var(--fh);
+      font-size: 10px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .hero-frame-tab.active {
+      background: rgba(255,255,255,.10);
+      color: rgba(255,255,255,.94);
+    }
+    .hero-frame-body {
+      display: grid;
+      grid-template-columns: 156px minmax(0, 1fr);
+      min-height: 420px;
+      background: #ECEBE8;
+    }
+    .hero-sidebar {
+      display: flex;
+      flex-direction: column;
+      background: rgba(255,255,255,.95);
+      border-right: 1px solid var(--rule);
+    }
+    .hero-sidebar-header {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--rule);
+      font-family: var(--fh);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      color: var(--body);
+    }
+    .hero-sidebar-scroll {
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+    .hero-sidebar-scroll::-webkit-scrollbar {
+      width: 3px;
+    }
+    .hero-sidebar-scroll::-webkit-scrollbar-thumb {
+      background: #D8D8D5;
+      border-radius: 999px;
+    }
+    .hero-layer,
+    .hero-layer-empty {
+      border: 0;
+      border-bottom: 1px solid rgba(26,27,30,.05);
+      background: transparent;
+      text-align: left;
+      cursor: pointer;
+      transition: background .16s ease, border-color .16s ease;
+    }
+    .hero-layer {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      padding: 10px 12px;
+    }
+    .hero-layer:hover,
+    .hero-layer-empty:hover {
+      background: var(--bg-soft);
+    }
+    .hero-layer.active {
+      background: rgba(255,128,0,.08);
+      box-shadow: inset 2px 0 0 var(--brand);
+    }
+    .hero-layer-thumb {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      border: 1px solid rgba(26,27,30,.08);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .hero-layer-info {
+      min-width: 0;
+      flex: 1;
+    }
+    .hero-layer-zone,
+    .hero-layer-empty-zone {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .hero-layer-name {
+      margin-top: 2px;
+      font-size: 11px;
+      line-height: 1.35;
+      color: var(--body);
+    }
+    .hero-layer-empty {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      padding: 11px 12px;
+    }
+    .hero-layer-empty-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 24px;
+      padding: 0 8px;
+      border-radius: 999px;
+      border: 1px solid var(--rule);
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .hero-canvas {
+      position: relative;
+      min-height: 420px;
+      overflow: hidden;
+      background: #151515;
+      cursor: col-resize;
+      touch-action: none;
+    }
+    .hero-canvas img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      user-select: none;
+      pointer-events: none;
+      -webkit-user-drag: none;
+    }
+    .hero-before {
+      z-index: 2;
+      clip-path: inset(0 50% 0 0);
+    }
+    .hero-divider {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      transform: translateX(-50%);
+      background: rgba(255,255,255,.94);
+      box-shadow: 0 0 0 1px rgba(0,0,0,.08);
+      z-index: 5;
+    }
+    .hero-handle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 42px;
+      height: 42px;
+      transform: translate(-50%, -50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: var(--white);
+      box-shadow: 0 8px 24px rgba(26,27,30,.25);
+    }
+    .hero-handle svg {
+      width: 16px;
+      height: 16px;
+      color: var(--body);
+    }
+    .hero-canvas-label {
+      position: absolute;
+      bottom: 16px;
+      z-index: 6;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-family: var(--fh);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .hero-canvas-label.before {
+      left: 16px;
+      background: rgba(0,0,0,.42);
+      border: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.86);
+    }
+    .hero-canvas-label.after {
+      right: 16px;
+      background: rgba(255,128,0,.92);
+      color: var(--white);
+    }
+    .hero-canvas-caption {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      z-index: 6;
+      padding: 8px 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.88);
+      border: 1px solid rgba(26,27,30,.08);
+      box-shadow: 0 12px 30px rgba(26,27,30,.12);
+      font-size: 12px;
+      color: var(--body);
+      max-width: min(250px, calc(100% - 92px));
+    }
+    .hero-canvas-caption strong {
+      display: block;
+      margin-bottom: 2px;
+      font-family: var(--fh);
+      font-size: 12px;
+      color: var(--ink);
+    }
+
     /* ═══════════════════════════════════════════
        MARQUEE
     ════════════════════════════════════════════ */
@@ -403,7 +906,6 @@
       padding-bottom: 6px;
     }
     .demo-hint svg { width: 16px; height: 16px; }
-
     /* Comparison slider */
     .comp-slider {
       position: relative;
@@ -901,18 +1403,134 @@
     /* ── Large tablets / small laptops ── */
     @media (max-width: 1200px) {
       .hero-content { padding: 140px 32px 100px 48px; }
+      .hero-shell { gap: 32px; padding-inline: 32px; }
+      .hero-float-chip { right: -8px; }
+      .hero-devices.hero-scene-wrap .hero-devices-scene { max-width: 740px; }
     }
 
     /* ── Tablet landscape / stacked layout ── */
     @media (max-width: 1024px) {
-      .hero {
+      .hero-shell {
+        min-height: auto;
         grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 96px 32px 56px;
+      }
+      .hero-content.hero-copy,
+      .hero-content.hero-copy .hero-inner {
+        display: contents;
+      }
+      .hero-copy-main,
+      .hero-copy-secondary {
+        text-align: center;
+      }
+      .hero-copy-main { order: 0; }
+      .hero-pill { margin-bottom: 18px; }
+      .hero-h1 { margin-bottom: 18px; }
+      .hero-copy-secondary {
+        display: contents;
+        order: 1;
+      }
+      .hero-copy,
+      .hero-sub { max-width: 100%; }
+      .hero-sub {
+        order: 1;
+        text-align: center;
+        margin-inline: auto;
+        max-width: 640px;
+        margin-bottom: 20px;
+      }
+      .hero-ctas,
+      .hero-trust { justify-content: center; }
+      .hero-ctas {
+        order: 1;
+        margin-bottom: 20px;
+      }
+      .hero-proof { justify-content: center; }
+      .hero-trust { order: 3; }
+      .hero-scene-wrap { padding: 8px 0 0; }
+      .hero-float-chip { display: none; }
+      .hero-frame { transform: none; }
+      .hero-frame-body {
+        grid-template-columns: 1fr;
+        min-height: 0;
+      }
+      .hero-canvas {
+        min-height: 0;
+        aspect-ratio: 1.22 / 1;
+      }
+      .hero-devices.hero-scene-wrap {
+        order: 2;
+        padding: 0;
+      }
+      .hero-devices.hero-scene-wrap .hero-devices-scene {
+        max-width: 900px;
+      }
+      .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         min-height: auto;
       }
-      .hero-content { padding: 120px 48px 40px; }
-      .hero-inner { max-width: 100%; }
-      .hero-devices { min-height: 420px; }
-      .hero-devices-scene { min-height: 360px; }
+      .hero::before { display: none; }
+      .hero-devices {
+        order: 1;
+        width: 100%;
+        min-height: 0;
+        overflow: visible;
+        padding: 0;
+      }
+      .hero-devices::after { display: none; }
+      .hero-devices-scene {
+        position: relative;
+        height: auto;
+        min-height: 0;
+        max-width: 900px;
+        width: 100%;
+        margin: 0 auto;
+      }
+      .hero-content {
+        padding: 0;
+      }
+      .hero-inner {
+        max-width: 760px;
+        margin: 0 auto;
+      }
+      .hero-sidebar {
+        border-right: 0;
+        border-top: 1px solid var(--rule);
+      }
+      .hero-sidebar-scroll {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        overflow: visible;
+      }
+      .hero-layer,
+      .hero-layer-empty {
+        min-width: 0;
+        min-height: 82px;
+        border-bottom: 0;
+        border-right: 1px solid rgba(26,27,30,.05);
+      }
+      .hero-layer {
+        padding: 10px 10px 11px;
+      }
+      .hero-layer-empty {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 10px;
+        display: none;
+      }
+      .hero-layer.active { box-shadow: inset 0 -2px 0 var(--brand); }
+      .hero-layer-name {
+        font-size: 10px;
+        line-height: 1.28;
+        overflow-wrap: anywhere;
+      }
+      .hero-layer-empty-zone {
+        font-size: 8px;
+      }
 
       .statement-inner { grid-template-columns: 1fr; gap: 40px; }
       .price-top { grid-template-columns: 1fr; gap: 48px; }
@@ -942,15 +1560,90 @@
 
     /* ── Tablet portrait ── */
     @media (max-width: 768px) {
-      .hero-content { padding: 110px 28px 24px; }
-      .hero-h1 { font-size: 44px; max-width: none; }
-      .hero-h1 .ul::after { height: 2.5px; }
-      .hero-sub { max-width: none; }
-      .hero-ctas { margin-bottom: 48px; }
+      .hero-shell { padding: 88px 24px 44px; }
+      .hero-content.hero-copy,
+      .hero-content.hero-copy .hero-inner {
+        display: contents;
+      }
+      .hero-copy-main {
+        order: 0;
+        text-align: center;
+      }
+      .hero-copy-secondary {
+        display: contents;
+        order: 1;
+        text-align: center;
+      }
+      .hero-pill { margin-bottom: 14px; }
+      .hero-h1 {
+        font-size: 42px;
+        margin-bottom: 14px;
+      }
+      .hero-sub {
+        order: 1;
+        max-width: none;
+        font-size: 15px;
+        margin-bottom: 18px;
+        text-align: center;
+        margin-inline: auto;
+      }
+      .hero-ctas {
+        order: 1;
+        margin-bottom: 18px;
+        justify-content: center;
+      }
+      .hero-copy { max-width: 100%; }
+      .hero-devices.hero-scene-wrap {
+        order: 2;
+        padding: 0;
+      }
+      .hero-devices.hero-scene-wrap .hero-devices-scene { max-width: 100%; }
+      .hero-ctas,
+      .hero-trust { justify-content: center; }
+      .hero-proof { justify-content: center; }
+      .hero-frame-topbar {
+        min-height: 42px;
+        padding-inline: 14px;
+      }
+      .hero-frame-links { display: none; }
+      .hero-frame-subbar { padding-inline: 12px; }
+      .hero-frame-breadcrumb { display: none; }
+      .hero-frame-body { grid-template-columns: 1fr; min-height: 0; }
+      .hero-canvas {
+        min-height: 0;
+        aspect-ratio: 1.18 / 1;
+      }
+      .hero-sidebar {
+        border-right: 0;
+        border-top: 1px solid var(--rule);
+      }
+      .hero-sidebar-scroll {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        overflow: visible;
+      }
+      .hero-sidebar-scroll::-webkit-scrollbar {
+        height: 3px;
+        width: auto;
+      }
+      .hero-layer,
+      .hero-layer-empty {
+        min-width: 0;
+        border-bottom: 0;
+        border-right: 1px solid rgba(26,27,30,.05);
+      }
+      .hero-layer.active { box-shadow: inset 0 -2px 0 var(--brand); }
+      .hero-layer-empty {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .hero-devices { padding: 0; }
+      .hero-devices-scene { max-width: 100%; }
+      .hero-content { padding: 0; }
+      .hero-inner { max-width: 480px; }
+      .hero-h1 { font-size: 36px; max-width: none; }
       .hero-ctas .btn-lg { padding: 14px 28px; font-size: 15px; }
-
-      .hero-devices { min-height: 340px; }
-      .hero-devices-scene { min-height: 280px; }
 
       /* Stats: single row, centered */
       .hero-stats { justify-content: center; }
@@ -984,34 +1677,148 @@
 
     /* ── Mobile phones ── */
     @media (max-width: 480px) {
-      .hero-content { padding: 100px 20px 20px; }
-      .hero-tag { font-size: 11px; padding: 5px 13px; margin-bottom: 28px; }
-      .hero-h1 { font-size: 38px; margin-bottom: 24px; }
-      .hero-sub { font-size: 15px; margin-bottom: 32px; }
-      .hero-ctas { flex-direction: column; gap: 10px; margin-bottom: 36px; }
-      .hero-ctas .btn { width: 100%; justify-content: center; }
-
-      .hero-devices { min-height: 260px; }
-      .hero-devices-scene { min-height: 220px; }
-
-      /* Tighten bezels on small screens */
-      .device-laptop .device-bezel { border-radius: 8px; padding: 4px 4px 14px; }
-      .device-laptop .device-bezel::after { width: 32px; height: 3px; bottom: 5px; }
-      .device-tablet .device-bezel { border-radius: 10px; padding: 4px 4px 14px; }
-      .device-tablet .device-bezel::after { width: 24px; height: 2px; bottom: 5px; }
-      .device-phone .device-bezel { border-radius: 12px; padding: 4px 3px 12px; }
-      .device-phone .device-bezel::after { width: 20px; height: 2px; bottom: 4px; }
-
-      /* Stats: single row, centered, compact */
-      .hero-stats {
-        justify-content: center;
-        gap: 0;
+      .hero-shell {
+        gap: 20px;
+        padding: 80px 16px 40px;
+      }
+      .hero-copy-main,
+      .hero-copy-secondary {
+        text-align: left;
+      }
+      .hero-copy-secondary {
+        display: block;
+        order: 2;
+      }
+      .hero-content.hero-copy,
+      .hero-content.hero-copy .hero-inner {
+        display: contents;
+      }
+      .hero-copy-main { order: 0; }
+      .hero-pill {
+        margin-bottom: 18px;
+        padding: 6px 10px;
         max-width: 100%;
       }
-      .hero-stat { text-align: center; }
-      .hero-stat + .hero-stat { padding-left: 16px; }
-      .hs-num { font-size: 22px; }
-      .hs-lbl { font-size: 11px; }
+      .hero-pill::after {
+        content: 'For Contractors';
+        font-size: 10px;
+        letter-spacing: .09em;
+      }
+      .hero-h1 {
+        font-size: 30px;
+        margin-bottom: 16px;
+      }
+      .hero-copy-secondary {
+        order: 2;
+      }
+      .hero-sub {
+        font-size: 15px;
+        margin-bottom: 22px;
+      }
+      .hero-ctas {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+      .hero-ctas .btn {
+        width: 100%;
+        justify-content: center;
+        white-space: normal;
+        text-align: center;
+        line-height: 1.25;
+        padding: 14px 18px;
+      }
+      .hero-trust { gap: 8px; }
+      .hero-ctas,
+      .hero-trust,
+      .hero-proof { justify-content: flex-start; }
+      .hero-proof { width: 100%; }
+      .hero-scene-wrap {
+        order: 1;
+        padding-top: 0;
+        margin-bottom: 2px;
+      }
+      .hero-devices.hero-scene-wrap {
+        order: 1;
+        padding: 0;
+      }
+      .hero-frame { border-radius: 18px; }
+      .hero-frame-logo img { height: 16px; }
+      .hero-frame-mode {
+        padding-inline: 8px;
+        font-size: 8px;
+      }
+      .hero-frame-topbar { padding-inline: 10px; }
+      .hero-frame-subbar { min-height: 32px; }
+      .hero-frame-tab {
+        padding-inline: 9px;
+        font-size: 9px;
+      }
+      .hero-frame-body { min-height: 0; }
+      .hero-canvas {
+        min-height: 0;
+        aspect-ratio: 1.08 / 1;
+      }
+      .hero-canvas-label {
+        bottom: 12px;
+        padding: 6px 9px;
+        font-size: 9px;
+      }
+      .hero-canvas-caption {
+        top: 12px;
+        left: 12px;
+        padding: 7px 9px;
+        font-size: 11px;
+      }
+      .hero-layer,
+      .hero-layer-empty {
+        min-width: 0;
+        border-right: 0;
+      }
+      .hero-layer-empty {
+        display: none;
+      }
+      .hero-sidebar-scroll {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        overflow: visible;
+        gap: 0;
+      }
+      .hero-layer {
+        padding: 8px 8px 9px;
+        min-height: 68px;
+        gap: 6px;
+      }
+      .hero-layer-empty {
+        padding: 8px;
+        min-height: 68px;
+        gap: 5px;
+      }
+      .hero-layer-zone,
+      .hero-layer-empty-zone {
+        font-size: 7px;
+      }
+      .hero-layer-thumb {
+        width: 28px;
+        height: 28px;
+      }
+      .hero-layer-name {
+        font-size: 8px;
+        line-height: 1.22;
+        overflow-wrap: anywhere;
+      }
+      .hero-layer-empty-pill {
+        min-height: 20px;
+        padding: 0 6px;
+        font-size: 7px;
+      }
+      .hero-devices { padding: 0; }
+      .hero-devices-scene { max-width: 100%; }
+      .hero-content { padding: 0; }
+      .hero-inner { max-width: 100%; }
+      .hero-h1 { font-size: 30px; margin-bottom: 14px; letter-spacing: -0.03em; }
+      .hero-sub { font-size: 14px; margin-bottom: 20px; }
 
       .site-header { padding: 12px 16px; }
       .hdr-logo img { height: 26px; }
@@ -1023,7 +1830,6 @@
 
       .demo-viz-section { padding: 60px 20px; }
       .demo-viz-head h2 { font-size: 24px; }
-
       .hiw-section { padding: 0 20px; }
       .hiw-left h2 { font-size: 26px; }
       .hiw-step h3 { font-size: 22px; }
@@ -1072,67 +1878,183 @@
 
 <!-- ════ HERO — SPLIT WITH CSS DEVICE MOCKUPS ════ -->
 <section class="hero" id="hero" aria-label="Hero">
+  <div class="hero-shell">
 
   <!-- Left: copy -->
-  <div class="hero-content">
+  <div class="hero-content hero-copy reveal">
     <div class="hero-inner">
-      <div class="hero-tag">
-        <span class="hero-tag-dot"></span>
+      <div class="hero-copy-main">
+      <div class="hero-pill" aria-label="Visualization Built For Contractors">
+        <span class="hero-pill-dot"></span>
         Renoworks Pro — For Contractors
       </div>
 
       <h1 class="hero-h1">
-        <span class="hero-line">Homeowners <span class="ul">see it.</span></span>
-        <span class="hero-line">Contractors <span class="nowrap">close it.</span></span>
+        Homeowners don't buy what they can't <strong>picture.</strong>
       </h1>
+      </div>
 
+      <div class="hero-copy-secondary">
       <p class="hero-sub">
-        Real-time exterior visualization means less "I can't tell what it will look like." and more "This looks great, let's do it."
+        Show real products on the home in front of you, help homeowners decide faster, and keep the project moving after the visit with a shareable design link.
       </p>
 
       <div class="hero-ctas">
-        <a href="#signup" class="btn btn-orange btn-lg">Get Started</a>
+        <a href="#signup" class="btn btn-orange btn-lg">See Renoworks in Action</a>
         <button type="button" class="btn btn-outline-white btn-lg" data-video="DBRvQarCBxU" data-video-title="Renoworks Pro Demo Walkthrough" aria-label="Play video: Renoworks Pro Demo Walkthrough">Watch Demo</button>
       </div>
 
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <div class="hs-num">350<span>+</span></div>
-          <div class="hs-lbl">Manufacturers</div>
+      <div class="hero-trust">
+        <div class="hero-proof">
+          <span class="hero-proof-mark" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M4 13l4-4 3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span><strong>30%</strong> higher close rate</span>
         </div>
-        <div class="hero-stat">
-          <div class="hs-num">30<span>%</span></div>
-          <div class="hs-lbl">Higher Close Rate</div>
+        <div class="hero-proof">
+          <span class="hero-proof-mark" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M4 10h12" stroke-linecap="round"/>
+              <path d="M10 4v12" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span><strong>3.5M+</strong> homeowners served</span>
         </div>
-        <div class="hero-stat">
-          <div class="hs-num">20<span>%</span></div>
-          <div class="hs-lbl">Shorter Sales Cycle</div>
+        <div class="hero-proof">
+          <span class="hero-proof-mark" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M4 10h12" stroke-linecap="round"/>
+              <path d="M6.5 6.5l7 7" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span><strong>350+</strong> brands in the platform</span>
         </div>
-        <div class="hero-stat">
-          <div class="hs-num">6<span>x</span></div>
-          <div class="hs-lbl">ROI</div>
-        </div>
+      </div>
       </div>
     </div>
   </div>
 
   <!-- Right: device mockups — laptop back, tablet + phone overlapping left -->
-  <div class="hero-devices" aria-hidden="true">
+  <div class="hero-devices hero-scene-wrap reveal reveal-d1" aria-hidden="true">
     <div class="hero-devices-scene">
-
-      <!-- Laptop (center-back, dominant) -->
-      <div class="device device-laptop">
-        <div class="device-bezel">
-          <div class="device-screen">
-            <img src="images/Renoworks-Preview-4-product-preview.jpg" alt="">
+      <div class="hero-float-chip">
+        <div class="hero-chip-label">Selected Layers</div>
+        <div class="hero-chip-list">
+          <div class="hero-chip-item">
+            <span class="hero-chip-swatch" style="background: linear-gradient(135deg, #7B563B, #5C3A22);"></span>
+            <span>Diamond Kote Chestnut Lap 6"</span>
+            <span class="hero-chip-check">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M2.5 6.5l2.2 2.2 4.8-5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+          <div class="hero-chip-item">
+            <span class="hero-chip-swatch" style="background: linear-gradient(135deg, #6A6A6A, #444444);"></span>
+            <span>CertainTeed Max Def Weathered Wood</span>
+            <span class="hero-chip-check">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M2.5 6.5l2.2 2.2 4.8-5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+          <div class="hero-chip-item">
+            <span class="hero-chip-swatch" style="background: linear-gradient(135deg, #49392A, #2D2013);"></span>
+            <span>Sherwin-Williams Tricorn Black</span>
+            <span class="hero-chip-check">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M2.5 6.5l2.2 2.2 4.8-5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
           </div>
         </div>
       </div>
 
+      <div class="hero-frame">
+        <div class="hero-frame-topbar">
+          <div class="hero-frame-logo"><img src="images/renoworks-logo.png" alt=""></div>
+          <div class="hero-frame-links">
+            <span>Projects</span>
+            <span>Product Library</span>
+            <span>Share Design</span>
+          </div>
+          <div class="hero-frame-mode">Live Design View</div>
+        </div>
 
+        <div class="hero-frame-subbar">
+          <div class="hero-frame-breadcrumb">Craftsman exterior refresh</div>
+          <div class="hero-frame-tabs">
+            <button class="hero-frame-tab active" type="button" tabindex="-1">Design</button>
+            <button class="hero-frame-tab" type="button" tabindex="-1">Share</button>
+          </div>
+        </div>
+
+        <div class="hero-frame-body">
+          <div class="hero-sidebar">
+            <div class="hero-sidebar-header">Product Layers</div>
+            <div class="hero-sidebar-scroll">
+              <button class="hero-layer active" type="button" tabindex="-1">
+                <span class="hero-layer-thumb" style="background: linear-gradient(135deg, #7B563B, #5C3A22);"></span>
+                <span class="hero-layer-info">
+                  <span class="hero-layer-zone">Wall</span>
+                  <span class="hero-layer-name">DuoBlend RigidStack Lap 6" Chestnut</span>
+                </span>
+              </button>
+              <button class="hero-layer" type="button" tabindex="-1">
+                <span class="hero-layer-thumb" style="background: linear-gradient(135deg, #6A6A6A, #444444);"></span>
+                <span class="hero-layer-info">
+                  <span class="hero-layer-zone">Roof</span>
+                  <span class="hero-layer-name">CertainTeed Max Def Weathered Wood</span>
+                </span>
+              </button>
+              <button class="hero-layer" type="button" tabindex="-1">
+                <span class="hero-layer-thumb" style="background: linear-gradient(135deg, #EFE9DD, #CDBFA7);"></span>
+                <span class="hero-layer-info">
+                  <span class="hero-layer-zone">Trim</span>
+                  <span class="hero-layer-name">Sherwin-Williams Tricorn Black</span>
+                </span>
+              </button>
+              <button class="hero-layer-empty" type="button" tabindex="-1">
+                <span class="hero-layer-empty-zone">Windows</span>
+                <span class="hero-layer-empty-pill">Apply</span>
+              </button>
+              <button class="hero-layer-empty" type="button" tabindex="-1">
+                <span class="hero-layer-empty-zone">Front Door</span>
+                <span class="hero-layer-empty-pill">Apply</span>
+              </button>
+              <button class="hero-layer-empty" type="button" tabindex="-1">
+                <span class="hero-layer-empty-zone">Garage</span>
+                <span class="hero-layer-empty-pill">Apply</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="hero-canvas" id="heroCompare">
+            <img src="images/hero-v7a/after-home.jpg" alt="">
+            <img class="hero-before" id="heroBefore" src="images/hero-v7a/before-home.jpg" alt="">
+            <div class="hero-divider" id="heroDivider">
+              <div class="hero-handle">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M5.5 8h5" stroke-linecap="round"/>
+                  <path d="M5.5 8L3.5 6M5.5 8l-2 2M10.5 8l2-2m-2 2l2 2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+            <div class="hero-canvas-caption">
+              <strong>Drag to compare</strong>
+              Before on one side, finished design on the other.
+            </div>
+            <div class="hero-canvas-label before">Before</div>
+            <div class="hero-canvas-label after">After</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
+  </div>
 </section>
 
 
@@ -1229,7 +2151,7 @@
     <div class="hiw-left">
       <span class="eyebrow">How it works</span>
       <h2 id="hiw-h">Three steps to a confident yes.</h2>
-      <p>Renoworks Pro fits naturally into your existing sales process — no extra steps, no tech headaches.</p>
+      <p>Renoworks Pro fits naturally into the way your team helps homeowners decide — no extra steps, no tech headaches.</p>
       <nav class="hiw-step-nav" aria-label="Steps">
         <div class="nav-pip active" data-step="0">
           <div class="nav-pip-bar"></div>Upload the home
@@ -1448,7 +2370,7 @@
           </thead>
           <tbody>
             <tr>
-              <td class="col-cap">Use as part of your sales process</td>
+              <td class="col-cap">Use as part of your homeowner decision workflow</td>
               <td class="col-status col-promo" aria-label="Included in promotional offer">
                 <span class="pf-icon-cell"><svg class="pf-check" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="9" r="8"/><path d="M5 9l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
               </td>
@@ -1588,6 +2510,98 @@ const revealIO = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 revealEls.forEach(el => revealIO.observe(el));
 
+/* ── Hero compare slider ── */
+(function() {
+  const wrap = document.getElementById('heroCompare');
+  const before = document.getElementById('heroBefore');
+  const divider = document.getElementById('heroDivider');
+  if (!wrap || !before || !divider) return;
+
+  const tabs = document.querySelectorAll('.hero-frame-tab');
+  const layers = document.querySelectorAll('.hero-layer');
+  let pos = 50;
+  let dragging = false;
+  let animating = false;
+  let t = 0;
+  let raf = 0;
+
+  function setPos(percent) {
+    const next = Math.max(4, Math.min(96, percent));
+    pos = next;
+    before.style.clipPath = `inset(0 ${100 - next}% 0 0)`;
+    divider.style.left = `${next}%`;
+  }
+
+  function animate() {
+    if (!animating) return;
+    t += 0.00055;
+    setPos(50 + 44 * Math.sin(t * Math.PI * 2));
+    raf = requestAnimationFrame(animate);
+  }
+
+  function stopAnimation() {
+    animating = false;
+    cancelAnimationFrame(raf);
+  }
+
+  function resumeAnimation() {
+    stopAnimation();
+    window.setTimeout(() => {
+      animating = true;
+      raf = requestAnimationFrame(animate);
+    }, 1600);
+  }
+
+  function update(clientX) {
+    const rect = wrap.getBoundingClientRect();
+    setPos(((clientX - rect.left) / rect.width) * 100);
+  }
+
+  function start(clientX) {
+    dragging = true;
+    stopAnimation();
+    update(clientX);
+  }
+
+  wrap.addEventListener('pointerdown', event => {
+    start(event.clientX);
+    wrap.setPointerCapture(event.pointerId);
+  });
+  wrap.addEventListener('pointermove', event => {
+    if (dragging) update(event.clientX);
+  });
+  wrap.addEventListener('pointerup', () => {
+    if (!dragging) return;
+    dragging = false;
+    resumeAnimation();
+  });
+  wrap.addEventListener('pointerleave', () => {
+    if (!dragging) return;
+    dragging = false;
+    resumeAnimation();
+  });
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(item => item.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+
+  layers.forEach(layer => {
+    layer.addEventListener('click', () => {
+      layers.forEach(item => item.classList.remove('active'));
+      layer.classList.add('active');
+    });
+  });
+
+  setPos(pos);
+  window.setTimeout(() => {
+    animating = true;
+    raf = requestAnimationFrame(animate);
+  }, 900);
+})();
+
 /* ── Interactive comparison slider ── */
 (function() {
   const wrap   = document.getElementById('compSlider');
@@ -1657,7 +2671,7 @@ revealEls.forEach(el => revealIO.observe(el));
       event: 'youtube_video_play',
       video_id: videoId,
       video_label: videoLabel || '',
-      landing_page_variant: 'v6a'
+      landing_page_variant: 'v7a'
     });
 
     frame.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0&enablejsapi=1&origin=' + encodeURIComponent(window.location.origin);
