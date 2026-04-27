@@ -411,6 +411,19 @@
     .hero-ctas .btn-lg {
       padding-inline: 30px;
     }
+    .hero-call-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 22px;
+      font-family: var(--fh);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .hero-call-link strong {
+      color: var(--brand);
+    }
     .hero-trust {
       display: flex;
       flex-wrap: wrap;
@@ -1273,6 +1286,17 @@
     .signup-step .step-desc {
       font-size: 14px; color: var(--muted); margin-bottom: 24px;
     }
+    .signup-phone-note {
+      margin-bottom: 20px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--body);
+    }
+    .signup-phone-note a {
+      font-family: var(--fh);
+      font-weight: 700;
+      color: var(--brand);
+    }
 
     .field-group { margin-bottom: 16px; }
     .field-group label {
@@ -1446,6 +1470,12 @@
         order: 1;
         margin-bottom: 20px;
       }
+      .hero-call-link {
+        order: 2;
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
       .hero-proof { justify-content: center; }
       .hero-trust { order: 3; }
       .hero-scene-wrap { padding: 8px 0 0; }
@@ -1592,6 +1622,12 @@
         margin-bottom: 18px;
         justify-content: center;
       }
+      .hero-call-link {
+        order: 2;
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 18px;
+      }
       .hero-copy { max-width: 100%; }
       .hero-devices.hero-scene-wrap {
         order: 2;
@@ -1720,6 +1756,11 @@
         align-items: stretch;
         gap: 10px;
         margin-bottom: 20px;
+      }
+      .hero-call-link {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
       }
       .hero-ctas .btn {
         width: 100%;
@@ -1903,6 +1944,8 @@
         <a href="#signup" class="btn btn-orange btn-lg">See Renoworks in Action</a>
         <button type="button" class="btn btn-outline-white btn-lg" data-video="DBRvQarCBxU" data-video-title="Renoworks Pro Demo Walkthrough" aria-label="Play video: Renoworks Pro Demo Walkthrough">Watch Demo</button>
       </div>
+
+      <a class="hero-call-link" href="tel:8573416989">Call or text us: <strong>857-341-6989</strong></a>
 
       <div class="hero-trust">
         <div class="hero-proof">
@@ -2341,6 +2384,7 @@
       <div class="signup-step">
         <h3>Request a demo</h3>
         <p class="step-desc">Fill out the form and our team will follow up.</p>
+        <p class="signup-phone-note">Prefer to call or text instead? Reach us at <a href="tel:8573416989">857-341-6989</a>.</p>
         <div id="hs-form-container"></div>
       </div>
     </div>
